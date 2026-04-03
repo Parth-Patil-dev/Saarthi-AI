@@ -1,0 +1,48 @@
+{
+  "id": "default",
+  "title": "Hello",
+  "createdAt": "2026-04-03T04:24:47.108Z",
+  "updatedAt": "2026-04-03T04:31:08.461Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! I'm a mock AI running in development mode. Ask me anything — or upload a PDF and ask questions about it. 😊"
+    },
+    {
+      "role": "user",
+      "content": "Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! I'm a mock AI running in development mode. Ask me anything — or upload a PDF and ask questions about it. 😊"
+    },
+    {
+      "role": "user",
+      "content": "pythagoras theorem"
+    },
+    {
+      "role": "assistant",
+      "content": "(Mock reply #3) I'm keeping track of our conversation. You said: \"pythagoras theorem\". In production, the real model would give a thoughtful answer here."
+    },
+    {
+      "role": "user",
+      "content": "pythagoras theorem"
+    },
+    {
+      "role": "assistant",
+      "content": "(Mock reply #3) I'm keeping track of our conversation. You said: \"pythagoras theorem\". In production, the real model would give a thoughtful answer here."
+    },
+    {
+      "role": "user",
+      "content": "pythagoras theorem"
+    },
+    {
+      "role": "assistant",
+      "content": "The Pythagorean theorem states that in any right-angled triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides. This can be written as a^2 + b^2 = c^2, where a and b are the lengths of the legs and c is the length of the hypotenuse."
+    }
+  ]
+}
