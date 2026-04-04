@@ -9,5 +9,16 @@
     "style": "concise",
     "createdAt": "2026-04-03T05:24:18.178Z",
     "updatedAt": "2026-04-03T05:24:18.178Z"
+  },
+  "note-1775197351003-zoxzr": {
+    "id": "note-1775197351003-zoxzr",
+    "title": "My Note",
+    "subject": "Maths",
+    "chapter": "mensuration",
+    "content": "area of rectangle : l*b",
+    "source": "manual",
+    "style": "manual",
+    "createdAt": "2026-04-03T06:22:31.003Z",
+    "updatedAt": "2026-04-03T06:22:31.003Z"
   }
 }

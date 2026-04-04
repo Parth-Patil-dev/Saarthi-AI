@@ -7,6 +7,7 @@
 
 import { callRestModel } from './adapters/rest.adapter.js';
 import { callMockModel } from './adapters/mock.adapter.js';
+import { savePaper } from './grading.service.js';
 import { logger } from '../utils/logger.util.js';
 
 const AI_MODE = process.env.AI_MODE || 'mock';
@@ -51,7 +52,8 @@ export async function generateQuestionPaper(options) {
 
   const questions = parseQuestions(raw, numQuestions, marksPerQuestion, includeAnswers);
 
-  return {
+  const paper = {
+    id:            `paper-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     title:             `${subject} — ${chapter}`,
     subject,
     chapter,
@@ -63,6 +65,9 @@ export async function generateQuestionPaper(options) {
     generatedAt:       new Date().toISOString(),
     questions,
   };
+
+  await savePaper(paper);
+  return paper;
 }
 
 // ── Prompt builders ───────────────────────────────────────────────────────────

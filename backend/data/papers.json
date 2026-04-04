@@ -1,0 +1,40 @@
+{
+  "paper-1775218102007-pypp": {
+    "id": "paper-1775218102007-pypp",
+    "title": "Science — Newton's Laws",
+    "subject": "Science",
+    "chapter": "Newton's Laws",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 5,
+    "numQuestions": 4,
+    "includeAnswers": true,
+    "generatedAt": "2026-04-03T12:08:22.007Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "According to Newton's First Law of Motion, an object at rest tends to stay at rest unless acted upon by a net external force. Give an example from everyday life that supports this law.",
+        "marks": 5,
+        "answer": null
+      },
+      {
+        "number": 2,
+        "question": "What is the relationship between acceleration and net force? Use Newton's Second Law of Motion in your answer.",
+        "marks": 5,
+        "answer": null
+      },
+      {
+        "number": 3,
+        "question": "A car accelerates uniformly from rest, reaching a speed of 30 m/s in 10 seconds. Calculate its average acceleration.",
+        "marks": 5,
+        "answer": null
+      },
+      {
+        "number": 4,
+        "question": "Inertia is the tendency of an object to resist changes in motion. Explain why it is easier to keep a moving ball rolling than to start it rolling from rest. Consider four different objects: a feather, a marble, a brick and a bowling ball. Each of these objects has been dropped from a height on Earth. Assume that the only force acting on each object is gravity. You are given the following information:",
+        "marks": 5,
+        "answer": null
+      }
+    ]
+  }
+}

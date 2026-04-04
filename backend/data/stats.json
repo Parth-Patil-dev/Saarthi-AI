@@ -1,0 +1,53 @@
+{
+  "student-1": {
+    "studentId": "student-1",
+    "totalAttempts": 1,
+    "totalMarksAwarded": 9,
+    "totalMarksPossible": 20,
+    "averageScore": 45,
+    "bySubject": {
+      "Science": {
+        "attempts": 1,
+        "totalAwarded": 9,
+        "totalPossible": 20,
+        "average": 45
+      }
+    },
+    "byDifficulty": {
+      "medium": {
+        "attempts": 1,
+        "totalAwarded": 9,
+        "totalPossible": 20,
+        "average": 45
+      }
+    },
+    "byTopic": {
+      "Science::Newton's Laws": {
+        "subject": "Science",
+        "chapter": "Newton's Laws",
+        "attempts": 1,
+        "totalAwarded": 9,
+        "totalPossible": 20,
+        "average": 45
+      }
+    },
+    "bestTopic": {
+      "subject": "Science",
+      "chapter": "Newton's Laws",
+      "attempts": 1,
+      "totalAwarded": 9,
+      "totalPossible": 20,
+      "average": 45
+    },
+    "worstTopic": {
+      "subject": "Science",
+      "chapter": "Newton's Laws",
+      "attempts": 1,
+      "totalAwarded": 9,
+      "totalPossible": 20,
+      "average": 45
+    },
+    "lastAttemptAt": "2026-04-03T12:25:58.449Z",
+    "updatedAt": "2026-04-03T12:25:58.463Z"
+  }
+}

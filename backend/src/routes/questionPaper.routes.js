@@ -3,12 +3,18 @@
  */
 
 import { Router } from 'express';
-import { fetchSubjects, generatePaper } from '../controllers/questionPaper.controller.js';
+import { fetchSubjects, generatePaper, listPapersHandler, getPaperHandler } from '../controllers/questionPaper.controller.js';
 
 export const questionPaperRouter = Router();
 
-// GET  /api/question-paper/subjects  — list available subjects
+// GET  /api/question-paper/subjects
 questionPaperRouter.get('/subjects', fetchSubjects);
 
-// POST /api/question-paper/generate  — generate a question paper
+// GET  /api/question-paper — list all saved papers
+questionPaperRouter.get('/', listPapersHandler);
+
+// GET  /api/question-paper/:paperId — get one paper
+questionPaperRouter.get('/:paperId', getPaperHandler);
+
+// POST /api/question-paper/generate
 questionPaperRouter.post('/generate', generatePaper);

@@ -13,7 +13,7 @@ import { initChatService } from './src/services/chat.service.js';
 import { initPdfService } from './src/services/pdf.service.js';
 import { questionPaperRouter } from './src/routes/questionPaper.routes.js';
 import { notesRouter } from './src/routes/notes.routes.js';
-
+import { gradingRouter } from './src/routes/grading.routes.js';
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
@@ -38,6 +38,7 @@ app.use('/api/chat', chatRouter);
 app.use('/api', pdfRouter);
 app.use('/api/question-paper', questionPaperRouter);
 app.use('/api/notes', notesRouter);
+app.use('/api/grading', gradingRouter);
 
 // ── Error Handling (must be LAST) ──────────────────────────────────────────────
 app.use(notFound);

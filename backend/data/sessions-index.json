@@ -3,14 +3,35 @@
     "id": "default",
     "title": "Hello",
     "createdAt": "2026-04-03T04:24:47.108Z",
-    "updatedAt": "2026-04-03T04:31:08.461Z",
-    "messageCount": 10
+    "updatedAt": "2026-04-04T04:39:04.591Z",
+    "messageCount": 12
   },
   "science": {
     "id": "science",
     "title": "keplars law",
     "createdAt": "2026-04-03T04:35:37.788Z",
-    "updatedAt": "2026-04-03T04:36:49.968Z",
+    "updatedAt": "2026-04-04T04:35:02.696Z",
+    "messageCount": 6
+  },
+  "history": {
+    "id": "history",
+    "title": "Maratha empire",
+    "createdAt": "2026-04-03T12:06:02.372Z",
+    "updatedAt": "2026-04-03T12:06:17.661Z",
     "messageCount": 2
+  },
+  "personal": {
+    "id": "personal",
+    "title": "Hello",
+    "createdAt": "2026-04-04T04:28:11.086Z",
+    "updatedAt": "2026-04-04T04:28:47.109Z",
+    "messageCount": 2
+  },
+  "law": {
+    "id": "law",
+    "title": "tell me about posco",
+    "createdAt": "2026-04-04T04:30:18.643Z",
+    "updatedAt": "2026-04-04T04:31:55.501Z",
+    "messageCount": 4
   }
 }

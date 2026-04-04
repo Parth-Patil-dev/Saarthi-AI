@@ -3,6 +3,7 @@
  */
 
 import { generateQuestionPaper, getSubjects } from '../services/questionPaper.service.js';
+import { getPaper, listPapers } from '../services/grading.service.js';
 import { createError } from '../utils/error.util.js';
 
 /**
@@ -57,6 +58,27 @@ export async function generatePaper(req, res, next) {
       includeAnswers: Boolean(includeAnswers),
     });
 
+    res.status(200).json({ success: true, paper });
+  } catch (err) {
+    next(createError(err.message, err.status || 500));
+  }
+}
+
+// GET /api/question-paper — list all saved papers
+export async function listPapersHandler(req, res, next) {
+  try {
+    const papers = await listPapers();
+    res.status(200).json({ success: true, count: papers.length, papers });
+  } catch (err) {
+    next(createError(err.message, err.status || 500));
+  }
+}
+
+// GET /api/question-paper/:paperId — get a single paper
+export async function getPaperHandler(req, res, next) {
+  try {
+    const paper = await getPaper(req.params.paperId);
+    if (!paper) return next(createError(`Paper "${req.params.paperId}" not found.`, 404));
     res.status(200).json({ success: true, paper });
   } catch (err) {
     next(createError(err.message, err.status || 500));
