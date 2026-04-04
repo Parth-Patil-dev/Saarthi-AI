@@ -1,4 +1,4 @@
-# 👨‍🏫 Saarthi AI
+# Saarthi AI
 ### *Empowering Bharat with Internet-Independent Intelligence*
 
 <div align="center">
