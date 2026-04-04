@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-handwriting: "Patrick Hand", cursive;
+}
+
+@layer base {
+  :root {
+    --paper-bg: #fdfaf1;
+    --paper-line: #e5e7eb;
+    --paper-margin: #fecaca;
+    --ink-primary: #1f2937;
+    --ink-secondary: #4b5563;
+    --pencil-blue: #3b82f6;
+    --pencil-red: #ef4444;
+  }
+
+  body {
+    background-color: #f3f4f6;
+    color: var(--ink-primary);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .notebook-page {
+    @apply bg-[var(--paper-bg)] shadow-xl border border-gray-200 relative overflow-hidden;
+    background-image: linear-gradient(var(--paper-line) 1px, transparent 1px);
+    background-size: 100% 2rem;
+    padding-top: 2rem;
+  }
+
+  .notebook-margin {
+    @apply absolute left-12 top-0 bottom-0 w-[2px] bg-[var(--paper-margin)];
+  }
+
+  .handwritten {
+    font-family: var(--font-handwriting);
+  }
+
+  .pencil-underline {
+    @apply border-b-2 border-dashed border-[var(--pencil-blue)];
+  }
+
+  .btn-notebook {
+    @apply px-4 py-2 border-2 border-[var(--ink-primary)] bg-white hover:bg-gray-50 transition-all active:translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .card-notebook {
+    @apply p-6 border-2 border-[var(--ink-primary)] bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  /* Textbook Styles */
+  /* Textbook Styles V2 */
+  .textbook-banner-v2 {
+    @apply flex items-start gap-12 mb-16 relative;
+  }
+
+  .textbook-chapter-badge {
+    @apply bg-[#e91e63] text-white w-32 h-32 flex flex-col items-center justify-center rounded-2xl shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-500;
+  }
+
+  .textbook-box-study {
+    @apply border-4 border-[#e91e63] rounded-3xl p-10 bg-white my-16 relative shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .textbook-box-recall {
+    @apply border-4 border-[#2196f3] rounded-3xl p-10 bg-white my-16 relative shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .textbook-example-box {
+    @apply relative overflow-hidden;
+  }
+
+  .textbook-example-box::after {
+    content: "";
+    @apply absolute top-0 right-0 w-32 h-32 bg-[#e91e63]/5 rounded-full -mr-16 -mt-16;
+  }
+
+  .textbook-header-pink {
+    @apply inline-block bg-[#fce4ec] text-[#e91e63] px-4 py-1 rounded-full font-bold border border-[#e91e63] mb-4;
+  }
+
+  .textbook-example {
+    @apply border-l-4 border-[#e91e63] pl-6 my-6;
+  }
+
+  /* Prose overrides for textbook */
+  .prose h1, .prose h2, .prose h3 {
+    @apply text-[#e91e63] font-bold;
+  }
+  
+  .prose strong {
+    @apply text-[#e91e63] font-bold;
+  }
+
+  .prose p {
+    @apply leading-relaxed text-gray-800;
+  }
+}
+
+/* Custom scrollbar for notebook feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-secondary);
+  border-radius: 4px;
+}
