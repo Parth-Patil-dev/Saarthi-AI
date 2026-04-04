@@ -3,7 +3,7 @@
 
 <div align="center">
   <img src="https://img.shields.io/badge/SDG_4-Quality_Education-00A9E0?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/SDG_9-Innovation-F36D21?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/SDG_9-Industry,Innovation and Infrastructure-F36D21?style=for-the-badge" />
   <img src="https://img.shields.io/badge/SDG_10-Reduced_Inequalities-E11484?style=for-the-badge" />
 </div>
 
