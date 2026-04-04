@@ -1,0 +1,16 @@
+{
+  "id": "hello",
+  "title": "hello",
+  "createdAt": "2026-04-04T08:10:55.913Z",
+  "updatedAt": "2026-04-04T08:10:56.922Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Greetings! How can I assist you today?"
+    }
+  ]
+}

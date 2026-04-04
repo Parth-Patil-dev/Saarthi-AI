@@ -49,5 +49,98 @@
     },
     "lastAttemptAt": "2026-04-03T12:25:58.449Z",
     "updatedAt": "2026-04-03T12:25:58.463Z"
+  },
+  "student-default": {
+    "studentId": "student-default",
+    "totalAttempts": 5,
+    "totalMarksAwarded": 57,
+    "totalMarksPossible": 100,
+    "averageScore": 57,
+    "bySubject": {
+      "Science": {
+        "attempts": 2,
+        "totalAwarded": 26,
+        "totalPossible": 40,
+        "average": 65
+      },
+      "Mathematics": {
+        "attempts": 3,
+        "totalAwarded": 31,
+        "totalPossible": 60,
+        "average": 52
+      }
+    },
+    "byDifficulty": {
+      "easy": {
+        "attempts": 1,
+        "totalAwarded": 14,
+        "totalPossible": 20,
+        "average": 70
+      },
+      "medium": {
+        "attempts": 3,
+        "totalAwarded": 33,
+        "totalPossible": 60,
+        "average": 55
+      },
+      "hard": {
+        "attempts": 1,
+        "totalAwarded": 10,
+        "totalPossible": 20,
+        "average": 50
+      }
+    },
+    "byTopic": {
+      "Science::keplars law": {
+        "subject": "Science",
+        "chapter": "keplars law",
+        "attempts": 1,
+        "totalAwarded": 12,
+        "totalPossible": 20,
+        "average": 60
+      },
+      "Science::newtons laws": {
+        "subject": "Science",
+        "chapter": "newtons laws",
+        "attempts": 1,
+        "totalAwarded": 14,
+        "totalPossible": 20,
+        "average": 70
+      },
+      "Mathematics::pythagoras theorem": {
+        "subject": "Mathematics",
+        "chapter": "pythagoras theorem",
+        "attempts": 2,
+        "totalAwarded": 19,
+        "totalPossible": 40,
+        "average": 48
+      },
+      "Mathematics::linear equations": {
+        "subject": "Mathematics",
+        "chapter": "linear equations",
+        "attempts": 1,
+        "totalAwarded": 12,
+        "totalPossible": 20,
+        "average": 60
+      }
+    },
+    "bestTopic": {
+      "subject": "Science",
+      "chapter": "newtons laws",
+      "attempts": 1,
+      "totalAwarded": 14,
+      "totalPossible": 20,
+      "average": 70
+    },
+    "worstTopic": {
+      "subject": "Mathematics",
+      "chapter": "pythagoras theorem",
+      "attempts": 2,
+      "totalAwarded": 19,
+      "totalPossible": 40,
+      "average": 48
+    },
+    "lastAttemptAt": "2026-04-04T13:29:07.261Z",
+    "updatedAt": "2026-04-04T13:29:07.267Z"
   }
 }

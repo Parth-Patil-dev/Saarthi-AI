@@ -36,5 +36,278 @@
         "answer": null
       }
     ]
+  },
+  "paper-1775300121148-2rjm": {
+    "id": "paper-1775300121148-2rjm",
+    "title": "History — maratha history",
+    "subject": "History",
+    "chapter": "maratha history",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T10:55:21.149Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "Describe the Maratha Empire's relationship with the Mughal Empire during the 17th century.",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "What impact did the Marathas have on the trade routes of India?",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "How did Shivaji Maharaj build a powerful empire in India without any foreign aid or conquest?",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "Discuss the significance of Peshwa Baji Rao II in shaping Maratha history.",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "Analyze the role of women in the Maratha Empire and how it influenced their society and culture.",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775300177015-ehj5": {
+    "id": "paper-1775300177015-ehj5",
+    "title": "Physics — newtons law",
+    "subject": "Physics",
+    "chapter": "newtons law",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T10:56:17.015Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "A car traveling at a constant speed of 60 km/h suddenly applies its brakes. The car comes to a stop after 10 seconds. What was the car's acceleration?",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "Explain Newton's first law of motion in your own words. Provide an example from everyday life that illustrates this law.",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "A force of 20 N is applied to a 5 kg object. Calculate the resulting acceleration.",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "Discuss the relationship between force, mass, and acceleration as described by Newton's second law of motion. How do these variables affect each other?",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "An object with a mass of 2 kg is pushed with a force of 4 N in a straight line. Calculate the resulting acceleration of the object using Newton's second law of motion.",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775300223728-bu7g": {
+    "id": "paper-1775300223728-bu7g",
+    "title": "Mathematics — trigonometry",
+    "subject": "Mathematics",
+    "chapter": "trigonometry",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T10:57:03.728Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "Simplify the following expression using trigonometric identities: (sin x + cos x)^2 = ?",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "A boat is moving with a speed of 8 km/h in still water. The river it crosses has a current flowing at 2 km/h. What is the speed and direction of the boat relative to the shore?",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "Find the value of λ such that sin(x + 2π) = 0 for all x.",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "Prove that sin^2(θ) + cos^2(θ) = 1 using the unit circle.",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "A ladder is leaning against a wall at an angle of 60 degrees with the ground. If the base of the ladder is 8 m away from the wall, how high up the wall does the ladder reach? (Take π=3.14 for pi.)",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775300340602-km1t": {
+    "id": "paper-1775300340602-km1t",
+    "title": "Mathematics — pythagoras theorem",
+    "subject": "Mathematics",
+    "chapter": "pythagoras theorem",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T10:59:00.602Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "What is the pythagoras theorem? Explain its significance in mathematics.",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "How can you use the pythagoras theorem to find the length of a side in a right-angled triangle? Provide an example with calculations.",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "If two sides of a right-angled triangle have lengths of 6 cm and 8 cm, what is the minimum possible value for the hypotenuse? Show your work.",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "In what real-world scenarios might you use the pythagoras theorem? Give at least three examples.",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "Suppose we know the lengths of two sides of a right-angled triangle: one side has length 5 cm and the other side has length 12 cm. What is the minimum possible value for the hypotenuse? Show your work.",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775300784850-m4hj": {
+    "id": "paper-1775300784850-m4hj",
+    "title": "Mathematics — pythagoras theorem",
+    "subject": "Mathematics",
+    "chapter": "pythagoras theorem",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T11:06:24.850Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "How does Pythagoras' Theorem apply to a right-angled triangle?",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "What is the formula for finding the hypotenuse of a right-angled triangle?",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "How can you use the Pythagorean theorem to check if three given lengths can form a right-angled triangle?",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "Can you derive the Pythagorean Theorem using similar triangles and the concept of area?",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "Given two sides of a right-angled triangle, what is the formula for finding the third side? How does this relate to the Pythagorean theorem?",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775307152725-vpqj": {
+    "id": "paper-1775307152725-vpqj",
+    "title": "Science — keplars law",
+    "subject": "Science",
+    "chapter": "keplars law",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T12:52:32.725Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "What is Kepler's law? Explain in your own words what it means.",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "How does Kepler's law help astronomers determine the distance between Earth and other planets?",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "Describe an example of how Kepler's law has been used to study a specific planet or celestial body.",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "In what ways can Kepler's law be applied outside of astronomy, such as in engineering or physics? Provide at least two examples.",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "What are the limitations of using Kepler's law in scientific research and observations? How might these limitations affect our understanding of the universe?",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775308144169-cirq": {
+    "id": "paper-1775308144169-cirq",
+    "title": "Mathematics — pythagoras theorem",
+    "subject": "Mathematics",
+    "chapter": "pythagoras theorem",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T13:09:04.170Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "A ladder 10 m long leans against a wall such that its base is 6 m from the wall. What is the height of the top of the ladder above the ground?",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean theorem, find the length of c, which is the hypotenuse of this right triangle.",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average speed during this time?",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What is the length of the other side? (Hint: Use the Pythagorean theorem)",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle θ opposite to the shorter leg x, in degrees. (Hint: Use trigonometric functions)",
+        "marks": 4
+      }
+    ]
   }
 }

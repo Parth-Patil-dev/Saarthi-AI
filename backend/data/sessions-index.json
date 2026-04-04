@@ -3,8 +3,8 @@
     "id": "default",
     "title": "Hello",
     "createdAt": "2026-04-03T04:24:47.108Z",
-    "updatedAt": "2026-04-04T04:39:04.591Z",
-    "messageCount": 12
+    "updatedAt": "2026-04-04T09:42:38.837Z",
+    "messageCount": 19
   },
   "science": {
     "id": "science",
@@ -33,5 +33,80 @@
     "createdAt": "2026-04-04T04:30:18.643Z",
     "updatedAt": "2026-04-04T04:31:55.501Z",
     "messageCount": 4
+  },
+  "hi": {
+    "id": "hi",
+    "title": "hi",
+    "createdAt": "2026-04-04T08:01:40.681Z",
+    "updatedAt": "2026-04-04T08:07:38.812Z",
+    "messageCount": 12
+  },
+  "newtons": {
+    "id": "newtons",
+    "title": "newtons law",
+    "createdAt": "2026-04-04T08:08:07.635Z",
+    "updatedAt": "2026-04-04T08:08:12.743Z",
+    "messageCount": 2
+  },
+  "keplars": {
+    "id": "keplars",
+    "title": "keplars law",
+    "createdAt": "2026-04-04T08:08:48.228Z",
+    "updatedAt": "2026-04-04T08:09:02.843Z",
+    "messageCount": 2
+  },
+  "virat": {
+    "id": "virat",
+    "title": "virat kohli",
+    "createdAt": "2026-04-04T08:09:14.765Z",
+    "updatedAt": "2026-04-04T08:10:25.614Z",
+    "messageCount": 4
+  },
+  "hello": {
+    "id": "hello",
+    "title": "hello",
+    "createdAt": "2026-04-04T08:10:55.913Z",
+    "updatedAt": "2026-04-04T08:10:56.922Z",
+    "messageCount": 2
+  },
+  "IIT": {
+    "id": "IIT",
+    "title": "IIT",
+    "createdAt": "2026-04-04T08:11:06.863Z",
+    "updatedAt": "2026-04-04T08:11:08.481Z",
+    "messageCount": 2
+  },
+  "yes": {
+    "id": "yes",
+    "title": "yes",
+    "createdAt": "2026-04-04T08:11:15.634Z",
+    "updatedAt": "2026-04-04T08:11:18.023Z",
+    "messageCount": 2
+  },
+  "[object Object]": {
+    "id": {
+      "id": "1775290531423",
+      "title": "New Chat 2",
+      "messages": [
+        {
+          "id": "1",
+          "role": "assistant",
+          "content": "Hello amartya! I'm your Saarthi AI tutor. What would you like to learn today?",
+          "timestamp": 1775290531423
+        }
+      ],
+      "timestamp": 1775290531423
+    },
+    "title": "hello",
+    "createdAt": "2026-04-04T08:21:31.982Z",
+    "updatedAt": "2026-04-04T14:22:33.691Z",
+    "messageCount": 18
+  },
+  "null": {
+    "id": null,
+    "title": "The student has selected the following text from their textb…",
+    "createdAt": "2026-04-04T09:55:47.197Z",
+    "updatedAt": "2026-04-04T12:03:23.331Z",
+    "messageCount": 14
   }
 }

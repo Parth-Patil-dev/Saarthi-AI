@@ -1,0 +1,16 @@
+{
+  "id": "newtons",
+  "title": "newtons law",
+  "createdAt": "2026-04-04T08:08:07.635Z",
+  "updatedAt": "2026-04-04T08:08:12.743Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "newtons law"
+    },
+    {
+      "role": "assistant",
+      "content": "Newtons third law states that for every action, there is an equal and opposite reaction. This means that whenever one object exerts a force on another, the second object exerts an equal and opposite force on the first object. In other words, if you push against a wall with your hand, the wall pushes back with an equal amount of force."
+    }
+  ]
+}

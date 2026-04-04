@@ -7,24 +7,28 @@ import {
   submitAnswers,
   listResults,
   fetchResult,
+  fetchAdvice,
   fetchStudentResults,
   listStats,
   fetchStudentStats,
 } from '../controllers/grading.controller.js';
-import { pdfUpload } from '../middlewares/upload.middleware.js';
+import { answerUpload } from '../middlewares/answerUpload.middleware.js';
 
 export const gradingRouter = Router();
 
-// Submit answers for grading (JSON or multipart with optional PDF)
-gradingRouter.post('/submit', pdfUpload.single('file'), submitAnswers);
+// Submit answers — accepts image OR pdf OR plain JSON
+gradingRouter.post('/submit', answerUpload.single('file'), submitAnswers);
 
-// All results
+// Results — supports ?subject= ?chapter= ?search= ?studentId= filtering
 gradingRouter.get('/results', listResults);
 
 // Single result
 gradingRouter.get('/results/:resultId', fetchResult);
 
-// All results for a student
+// AI advice for a result (lazy generated + cached)
+gradingRouter.get('/results/:resultId/advice', fetchAdvice);
+
+// All results for a specific student
 gradingRouter.get('/results/student/:studentId', fetchStudentResults);
 
 // All students stats

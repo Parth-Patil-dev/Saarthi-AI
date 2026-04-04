@@ -50,5 +50,243 @@
         "correctAnswer": null
       }
     ]
+  },
+  "result-1775307485171-g0ua": {
+    "id": "result-1775307485171-g0ua",
+    "paperId": "paper-1775307152725-vpqj",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Science",
+    "chapter": "keplars law",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksAwarded": 0,
+    "percentage": 0,
+    "grade": "F",
+    "submittedAt": "2026-04-04T12:58:05.171Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "What is Kepler's law? Explain in your own words what it means.",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 2,
+        "question": "How does Kepler's law help astronomers determine the distance between Earth and other planets?",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 3,
+        "question": "Describe an example of how Kepler's law has been used to study a specific planet or celestial body.",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 4,
+        "question": "In what ways can Kepler's law be applied outside of astronomy, such as in engineering or physics? Provide at least two examples.",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 5,
+        "question": "What are the limitations of using Kepler's law in scientific research and observations? How might these limitations affect our understanding of the universe?",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      }
+    ],
+    "advice": {
+      "overall": "Your performance in the Science section could be improved by focusing on providing specific examples to support your answers",
+      "perQuestion": [
+        {
+          "number": 1,
+          "advice": "When answering questions about Kepler's law, try to provide a clear explanation that includes relevant scientific principles and applications"
+        },
+        {
+          "number": 2,
+          "advice": "Practice answering questions in a similar format as these to improve your ability to explain concepts clearly"
+        }
+      ]
+    }
+  },
+  "result-1775308238861-71vf": {
+    "id": "result-1775308238861-71vf",
+    "paperId": "paper-1775308144169-cirq",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Mathematics",
+    "chapter": "pythagoras theorem",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksAwarded": 0,
+    "percentage": 0,
+    "grade": "F",
+    "submittedAt": "2026-04-04T13:10:38.862Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "A ladder 10 m long leans against a wall such that its base is 6 m from the wall. What is the height of the top of the ladder above the ground?",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 2,
+        "question": "A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean theorem, find the length of c, which is the hypotenuse of this right triangle.",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 3,
+        "question": "A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average speed during this time?",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 4,
+        "question": "In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What is the length of the other side? (Hint: Use the Pythagorean theorem)",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      },
+      {
+        "number": 5,
+        "question": "A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle θ opposite to the shorter leg x, in degrees. (Hint: Use trigonometric functions)",
+        "maxMarks": 4,
+        "studentAnswer": "(No answer provided)",
+        "marksAwarded": 0,
+        "feedback": "No answer was provided.",
+        "correctAnswer": null
+      }
+    ],
+    "advice": {
+      "overall": "You scored 0%. Review the questions you got wrong and focus on understanding the core concepts.",
+      "perQuestion": [
+        {
+          "number": 1,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 2,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 3,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 4,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 5,
+          "advice": "Review this topic and practice writing more complete answers."
+        }
+      ]
+    }
+  },
+  "result-1775309347260-w1ov": {
+    "id": "result-1775309347260-w1ov",
+    "paperId": "paper-1775308144169-cirq",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Mathematics",
+    "chapter": "pythagoras theorem",
+    "difficulty": "medium",
+    "totalMarks": 20,
+    "marksAwarded": 11,
+    "percentage": 55,
+    "grade": "D",
+    "submittedAt": "2026-04-04T13:29:07.261Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "A ladder 10 m long leans against a wall such that its base is 6 m from the wall. What is the height of the top of the ladder above the ground?",
+        "maxMarks": 4,
+        "studentAnswer": "Mathematics — Pythagorean Theorem\nTopic: Pythagoras Theorem | Difficulty: Medium\nStudent: Sample Student | Date: 04/04/2026 | Total Marks: 20\nQ1. A ladder 10 m long leans against a wall such that its base is 6 m from the wall.\nWhat is the height of the top of the ladder above the ground?\n[4 marks]\nWorking:\n• Using the Pythagorean theorem: a\n2\n + b\n2\n = c\n2\n• Here, the ladder is the hypotenuse (c = 10 m) and the base is one leg (b = 6 m).\n• So: h\n2\n + 6\n2\n = 10\n2\n• h\n2\n + 36 = 100\n• h\n2\n = 100 - 36 = 64\n• h = sqrt(64) = 8 m\nAnswer: The height of the top of the ladder above the ground is 8 metres.\nQ2. A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean\ntheorem, find the length of c, which is the hypotenuse.\n[4 marks]\nWorking:\n• Using: c\n2\n = a\n2\n + b\n2\n• c\n2\n = 7\n2\n + 9\n2\n• c\n2\n = 49 + 81 = 130\n• c = sqrt(130) = approximately 11.40 cm\nAnswer: The hypotenuse c is approximately 11.40 cm.\nQ3. A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average\nspeed during this time?\n[4 marks]\nWorking:\n• Distance in first part: 60 km/h x 2 h = 120 km\n• Distance in second part: 80 km/h x 3 h = 240 km\n• Total distance: 120 + 240 = 360 km\n• Total time: 2 + 3 = 5 hours\n• Average speed = Total distance / Total time = 360 / 5 = 72 km/h\nAnswer: The average speed of the car is 72 km/h.\n\nQ4. In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What\nis the length of the other side?\n[4 marks]\nWorking:\n• The diagonal of a rectangle forms a right triangle with the two sides.\n• Using: diagonal\n2\n = side1\n2\n + side2\n2\n• 15\n2\n = 12\n2\n + side2\n2\n• 225 = 144 + side2\n2\n• side2\n2\n = 225 - 144 = 81\n• side2 = sqrt(81) = 9 cm\nAnswer: The length of the other side of the rectangle is 9 cm.\nQ5. A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle theta\nopposite to the shorter leg x, in degrees.\n[4 marks]\nWorking:\n• First, find the hypotenuse: c\n2\n = 6\n2\n + 8\n2\n = 36 + 64 = 100, so c = 10 cm.\n• The angle theta is opposite to x = 6 cm (the shorter leg).\n• Using sine: sin(theta) = opposite / hypotenuse = 6 / 10 = 0.6\n• theta = arcsin(0.6) = approximately 36.87 degrees\nAnswer: The angle theta opposite to the shorter leg is approximately 36.87 degrees.\n— End of Answer Sheet —",
+        "marksAwarded": 0,
+        "feedback": "Could not evaluate.",
+        "correctAnswer": null
+      },
+      {
+        "number": 2,
+        "question": "A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean theorem, find the length of c, which is the hypotenuse of this right triangle.",
+        "maxMarks": 4,
+        "studentAnswer": "Mathematics — Pythagorean Theorem\nTopic: Pythagoras Theorem | Difficulty: Medium\nStudent: Sample Student | Date: 04/04/2026 | Total Marks: 20\nQ1. A ladder 10 m long leans against a wall such that its base is 6 m from the wall.\nWhat is the height of the top of the ladder above the ground?\n[4 marks]\nWorking:\n• Using the Pythagorean theorem: a\n2\n + b\n2\n = c\n2\n• Here, the ladder is the hypotenuse (c = 10 m) and the base is one leg (b = 6 m).\n• So: h\n2\n + 6\n2\n = 10\n2\n• h\n2\n + 36 = 100\n• h\n2\n = 100 - 36 = 64\n• h = sqrt(64) = 8 m\nAnswer: The height of the top of the ladder above the ground is 8 metres.\nQ2. A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean\ntheorem, find the length of c, which is the hypotenuse.\n[4 marks]\nWorking:\n• Using: c\n2\n = a\n2\n + b\n2\n• c\n2\n = 7\n2\n + 9\n2\n• c\n2\n = 49 + 81 = 130\n• c = sqrt(130) = approximately 11.40 cm\nAnswer: The hypotenuse c is approximately 11.40 cm.\nQ3. A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average\nspeed during this time?\n[4 marks]\nWorking:\n• Distance in first part: 60 km/h x 2 h = 120 km\n• Distance in second part: 80 km/h x 3 h = 240 km\n• Total distance: 120 + 240 = 360 km\n• Total time: 2 + 3 = 5 hours\n• Average speed = Total distance / Total time = 360 / 5 = 72 km/h\nAnswer: The average speed of the car is 72 km/h.\n\nQ4. In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What\nis the length of the other side?\n[4 marks]\nWorking:\n• The diagonal of a rectangle forms a right triangle with the two sides.\n• Using: diagonal\n2\n = side1\n2\n + side2\n2\n• 15\n2\n = 12\n2\n + side2\n2\n• 225 = 144 + side2\n2\n• side2\n2\n = 225 - 144 = 81\n• side2 = sqrt(81) = 9 cm\nAnswer: The length of the other side of the rectangle is 9 cm.\nQ5. A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle theta\nopposite to the shorter leg x, in degrees.\n[4 marks]\nWorking:\n• First, find the hypotenuse: c\n2\n = 6\n2\n + 8\n2\n = 36 + 64 = 100, so c = 10 cm.\n• The angle theta is opposite to x = 6 cm (the shorter leg).\n• Using sine: sin(theta) = opposite / hypotenuse = 6 / 10 = 0.6\n• theta = arcsin(0.6) = approximately 36.87 degrees\nAnswer: The angle theta opposite to the shorter leg is approximately 36.87 degrees.\n— End of Answer Sheet —",
+        "marksAwarded": 3,
+        "feedback": "Good effort, but you missed a few key details in your answer.",
+        "correctAnswer": null
+      },
+      {
+        "number": 3,
+        "question": "A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average speed during this time?",
+        "maxMarks": 4,
+        "studentAnswer": "Mathematics — Pythagorean Theorem\nTopic: Pythagoras Theorem | Difficulty: Medium\nStudent: Sample Student | Date: 04/04/2026 | Total Marks: 20\nQ1. A ladder 10 m long leans against a wall such that its base is 6 m from the wall.\nWhat is the height of the top of the ladder above the ground?\n[4 marks]\nWorking:\n• Using the Pythagorean theorem: a\n2\n + b\n2\n = c\n2\n• Here, the ladder is the hypotenuse (c = 10 m) and the base is one leg (b = 6 m).\n• So: h\n2\n + 6\n2\n = 10\n2\n• h\n2\n + 36 = 100\n• h\n2\n = 100 - 36 = 64\n• h = sqrt(64) = 8 m\nAnswer: The height of the top of the ladder above the ground is 8 metres.\nQ2. A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean\ntheorem, find the length of c, which is the hypotenuse.\n[4 marks]\nWorking:\n• Using: c\n2\n = a\n2\n + b\n2\n• c\n2\n = 7\n2\n + 9\n2\n• c\n2\n = 49 + 81 = 130\n• c = sqrt(130) = approximately 11.40 cm\nAnswer: The hypotenuse c is approximately 11.40 cm.\nQ3. A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average\nspeed during this time?\n[4 marks]\nWorking:\n• Distance in first part: 60 km/h x 2 h = 120 km\n• Distance in second part: 80 km/h x 3 h = 240 km\n• Total distance: 120 + 240 = 360 km\n• Total time: 2 + 3 = 5 hours\n• Average speed = Total distance / Total time = 360 / 5 = 72 km/h\nAnswer: The average speed of the car is 72 km/h.\n\nQ4. In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What\nis the length of the other side?\n[4 marks]\nWorking:\n• The diagonal of a rectangle forms a right triangle with the two sides.\n• Using: diagonal\n2\n = side1\n2\n + side2\n2\n• 15\n2\n = 12\n2\n + side2\n2\n• 225 = 144 + side2\n2\n• side2\n2\n = 225 - 144 = 81\n• side2 = sqrt(81) = 9 cm\nAnswer: The length of the other side of the rectangle is 9 cm.\nQ5. A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle theta\nopposite to the shorter leg x, in degrees.\n[4 marks]\nWorking:\n• First, find the hypotenuse: c\n2\n = 6\n2\n + 8\n2\n = 36 + 64 = 100, so c = 10 cm.\n• The angle theta is opposite to x = 6 cm (the shorter leg).\n• Using sine: sin(theta) = opposite / hypotenuse = 6 / 10 = 0.6\n• theta = arcsin(0.6) = approximately 36.87 degrees\nAnswer: The angle theta opposite to the shorter leg is approximately 36.87 degrees.\n— End of Answer Sheet —",
+        "marksAwarded": 4,
+        "feedback": "Your answer is partially correct.",
+        "correctAnswer": null
+      },
+      {
+        "number": 4,
+        "question": "In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What is the length of the other side? (Hint: Use the Pythagorean theorem)",
+        "maxMarks": 4,
+        "studentAnswer": "Mathematics — Pythagorean Theorem\nTopic: Pythagoras Theorem | Difficulty: Medium\nStudent: Sample Student | Date: 04/04/2026 | Total Marks: 20\nQ1. A ladder 10 m long leans against a wall such that its base is 6 m from the wall.\nWhat is the height of the top of the ladder above the ground?\n[4 marks]\nWorking:\n• Using the Pythagorean theorem: a\n2\n + b\n2\n = c\n2\n• Here, the ladder is the hypotenuse (c = 10 m) and the base is one leg (b = 6 m).\n• So: h\n2\n + 6\n2\n = 10\n2\n• h\n2\n + 36 = 100\n• h\n2\n = 100 - 36 = 64\n• h = sqrt(64) = 8 m\nAnswer: The height of the top of the ladder above the ground is 8 metres.\nQ2. A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean\ntheorem, find the length of c, which is the hypotenuse.\n[4 marks]\nWorking:\n• Using: c\n2\n = a\n2\n + b\n2\n• c\n2\n = 7\n2\n + 9\n2\n• c\n2\n = 49 + 81 = 130\n• c = sqrt(130) = approximately 11.40 cm\nAnswer: The hypotenuse c is approximately 11.40 cm.\nQ3. A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average\nspeed during this time?\n[4 marks]\nWorking:\n• Distance in first part: 60 km/h x 2 h = 120 km\n• Distance in second part: 80 km/h x 3 h = 240 km\n• Total distance: 120 + 240 = 360 km\n• Total time: 2 + 3 = 5 hours\n• Average speed = Total distance / Total time = 360 / 5 = 72 km/h\nAnswer: The average speed of the car is 72 km/h.\n\nQ4. In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What\nis the length of the other side?\n[4 marks]\nWorking:\n• The diagonal of a rectangle forms a right triangle with the two sides.\n• Using: diagonal\n2\n = side1\n2\n + side2\n2\n• 15\n2\n = 12\n2\n + side2\n2\n• 225 = 144 + side2\n2\n• side2\n2\n = 225 - 144 = 81\n• side2 = sqrt(81) = 9 cm\nAnswer: The length of the other side of the rectangle is 9 cm.\nQ5. A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle theta\nopposite to the shorter leg x, in degrees.\n[4 marks]\nWorking:\n• First, find the hypotenuse: c\n2\n = 6\n2\n + 8\n2\n = 36 + 64 = 100, so c = 10 cm.\n• The angle theta is opposite to x = 6 cm (the shorter leg).\n• Using sine: sin(theta) = opposite / hypotenuse = 6 / 10 = 0.6\n• theta = arcsin(0.6) = approximately 36.87 degrees\nAnswer: The angle theta opposite to the shorter leg is approximately 36.87 degrees.\n— End of Answer Sheet —",
+        "marksAwarded": 4,
+        "feedback": "Correct usage of JSON format and satisfactory answers",
+        "correctAnswer": null
+      },
+      {
+        "number": 5,
+        "question": "A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle θ opposite to the shorter leg x, in degrees. (Hint: Use trigonometric functions)",
+        "maxMarks": 4,
+        "studentAnswer": "Mathematics — Pythagorean Theorem\nTopic: Pythagoras Theorem | Difficulty: Medium\nStudent: Sample Student | Date: 04/04/2026 | Total Marks: 20\nQ1. A ladder 10 m long leans against a wall such that its base is 6 m from the wall.\nWhat is the height of the top of the ladder above the ground?\n[4 marks]\nWorking:\n• Using the Pythagorean theorem: a\n2\n + b\n2\n = c\n2\n• Here, the ladder is the hypotenuse (c = 10 m) and the base is one leg (b = 6 m).\n• So: h\n2\n + 6\n2\n = 10\n2\n• h\n2\n + 36 = 100\n• h\n2\n = 100 - 36 = 64\n• h = sqrt(64) = 8 m\nAnswer: The height of the top of the ladder above the ground is 8 metres.\nQ2. A right triangle has sides a = 7 cm and b = 9 cm. Using the Pythagorean\ntheorem, find the length of c, which is the hypotenuse.\n[4 marks]\nWorking:\n• Using: c\n2\n = a\n2\n + b\n2\n• c\n2\n = 7\n2\n + 9\n2\n• c\n2\n = 49 + 81 = 130\n• c = sqrt(130) = approximately 11.40 cm\nAnswer: The hypotenuse c is approximately 11.40 cm.\nQ3. A car travels 60 km/h for 2 hours, then 80 km/h for 3 hours. What is its average\nspeed during this time?\n[4 marks]\nWorking:\n• Distance in first part: 60 km/h x 2 h = 120 km\n• Distance in second part: 80 km/h x 3 h = 240 km\n• Total distance: 120 + 240 = 360 km\n• Total time: 2 + 3 = 5 hours\n• Average speed = Total distance / Total time = 360 / 5 = 72 km/h\nAnswer: The average speed of the car is 72 km/h.\n\nQ4. In a rectangle, the diagonal measures 15 cm and one side measures 12 cm. What\nis the length of the other side?\n[4 marks]\nWorking:\n• The diagonal of a rectangle forms a right triangle with the two sides.\n• Using: diagonal\n2\n = side1\n2\n + side2\n2\n• 15\n2\n = 12\n2\n + side2\n2\n• 225 = 144 + side2\n2\n• side2\n2\n = 225 - 144 = 81\n• side2 = sqrt(81) = 9 cm\nAnswer: The length of the other side of the rectangle is 9 cm.\nQ5. A right triangle has sides x = 6 cm and y = 8 cm. Find the measure of angle theta\nopposite to the shorter leg x, in degrees.\n[4 marks]\nWorking:\n• First, find the hypotenuse: c\n2\n = 6\n2\n + 8\n2\n = 36 + 64 = 100, so c = 10 cm.\n• The angle theta is opposite to x = 6 cm (the shorter leg).\n• Using sine: sin(theta) = opposite / hypotenuse = 6 / 10 = 0.6\n• theta = arcsin(0.6) = approximately 36.87 degrees\nAnswer: The angle theta opposite to the shorter leg is approximately 36.87 degrees.\n— End of Answer Sheet —",
+        "marksAwarded": 0,
+        "feedback": "Could not evaluate.",
+        "correctAnswer": null
+      }
+    ],
+    "advice": {
+      "overall": "You scored 55%. Review the questions you got wrong and focus on understanding the core concepts.",
+      "perQuestion": [
+        {
+          "number": 1,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 2,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 5,
+          "advice": "Review this topic and practice writing more complete answers."
+        }
+      ]
+    }
   }
 }

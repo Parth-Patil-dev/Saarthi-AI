@@ -1,0 +1,16 @@
+{
+  "id": "IIT",
+  "title": "IIT",
+  "createdAt": "2026-04-04T08:11:06.863Z",
+  "updatedAt": "2026-04-04T08:11:08.481Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "IIT"
+    },
+    {
+      "role": "assistant",
+      "content": "Can you provide me with some information on the Indian Institutes of Technology (IITs)?"
+    }
+  ]
+}

@@ -14,6 +14,7 @@ import { initPdfService } from './src/services/pdf.service.js';
 import { questionPaperRouter } from './src/routes/questionPaper.routes.js';
 import { notesRouter } from './src/routes/notes.routes.js';
 import { gradingRouter } from './src/routes/grading.routes.js';
+import cors from 'cors';
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +22,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
+app.use(cors());
 
 // ── Health Check ───────────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => {
