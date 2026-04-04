@@ -36,8 +36,8 @@ export const QuestionPaperGenerator = ({ onGenerate }) => {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ subject, chapter, difficulty, 
-         totalMarks: 20,
-  numQuestions: 5,
+         totalMarks: 80,
+  numQuestions: 15,
   includeAnswers: false
 
         })

@@ -409,5 +409,83 @@
         "explanation": "B. This is the correct answer because a magnetic dipole is an object that has a north and south pole that create a magnetic field around it similar to a bar magnet."
       }
     ]
+  },
+  "paper-1775341264340-ovno": {
+    "id": "paper-1775341264340-ovno",
+    "title": "Mathematics — Trignometry",
+    "subject": "Mathematics",
+    "chapter": "Trignometry",
+    "difficulty": "hard",
+    "totalMarks": 20,
+    "marksPerQuestion": 4,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T22:21:04.341Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "What is the value of sin(45°)? Round to 2 decimal places.",
+        "marks": 4
+      },
+      {
+        "number": 2,
+        "question": "Simplify the expression (cos(θ) + 3sin(θ))^2 when θ = 60°.",
+        "marks": 4
+      },
+      {
+        "number": 3,
+        "question": "The sum of two angles in a triangle is always ____ degrees.",
+        "marks": 4
+      },
+      {
+        "number": 4,
+        "question": "If tan(x) = 1/√3, what is the value of x? Round to 2 decimal places.",
+        "marks": 4
+      },
+      {
+        "number": 5,
+        "question": "Find the slope of the line that passes through the points (2, 3) and (-1, -5). Round to 2 decimal places.",
+        "marks": 4
+      }
+    ]
+  },
+  "paper-1775341360581-wtcu": {
+    "id": "paper-1775341360581-wtcu",
+    "title": "Science — photosynthesis",
+    "subject": "Science",
+    "chapter": "photosynthesis",
+    "difficulty": "hard",
+    "totalMarks": 80,
+    "marksPerQuestion": 16,
+    "numQuestions": 5,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-04T22:22:40.581Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "What are the reactants and products of photosynthesis? (4 marks)",
+        "marks": 16
+      },
+      {
+        "number": 2,
+        "question": "How does light energy convert into chemical energy in photosynthesis? Explain the process. (8 marks)",
+        "marks": 16
+      },
+      {
+        "number": 3,
+        "question": "Describe the role of chlorophyll in photosynthesis. (6 marks)",
+        "marks": 16
+      },
+      {
+        "number": 4,
+        "question": "Why do plants need oxygen for respiration? Explain the relationship between these two processes. (10 marks)",
+        "marks": 16
+      },
+      {
+        "number": 5,
+        "question": "How does the availability of carbon dioxide affect the rate of photosynthesis? Explain with examples. (8 marks)",
+        "marks": 16
+      }
+    ]
   }
 }

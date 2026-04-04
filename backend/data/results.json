@@ -358,6 +358,22 @@
         "correctAnswer": "An object with no charge."
       }
     ],
-    "advice": null
+    "advice": {
+      "overall": "You scored 50%. Review the questions you got wrong and focus on understanding the core concepts.",
+      "perQuestion": [
+        {
+          "number": 3,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 5,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 6,
+          "advice": "Review this topic and practice writing more complete answers."
+        }
+      ]
+    }
   }
 }

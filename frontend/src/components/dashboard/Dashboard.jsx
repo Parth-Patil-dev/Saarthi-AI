@@ -8,7 +8,7 @@ import {
   Zap
 } from 'lucide-react';
 import { SUBJECTS } from '../../constants';
-
+const checkpoints = ['Intro', 'Concept', 'Practice', 'Quiz'];
 // One color per subject slot — cycles if there are more subjects
 const SUBJECT_COLORS = [
   '#f59e0b', // amber
@@ -46,85 +46,141 @@ export const Dashboard = ({ profile, onNavigate }) => {
           </div>
         </div>
       </header>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {SUBJECTS.slice(0, 3).map((subject, index) => {
+    const color = SUBJECT_COLORS[index];
+    const currentStep = 1; // later dynamic
 
-      <div className="grid grid-cols-1 gap-6">
-        <div className="card-notebook">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Zap size={20} className="text-yellow-500" /> Recent Progress
-          </h3>
-          <div className="space-y-4">
-            {['Science: Cell Structure', 'Math: Linear Equations', 'History: French Revolution'].map((item, i) => (
-              <div key={i} className="flex items-center justify-between p-3 border-2 border-gray-100 hover:border-black transition-all cursor-pointer group" onClick={() => onNavigate('subjects')}>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <span className="font-medium">{item}</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500" style={{ width: `${80 - i * 20}%` }}></div>
-                  </div>
-                  <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </div>
+    return (
+      <div key={subject.id} className="bg-white border p-4">
+
+        {/* Title */}
+        <p className="text-[10px] font-bold text-gray-400 uppercase">
+          {subject.name}
+        </p>
+        <h3 className="text-sm font-bold mb-2">
+          {subject.chapters[0]?.title || "Chapter Name"}
+        </h3>
+
+        {/* Timeline */}
+        <Timeline
+          checkpoints={['Intro', 'Concept', 'Practice', 'Quiz']}
+          currentStep={currentStep}
+          color={color}
+        />
+
+      </div>
+    );
+  })}
+</div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+    {SUBJECTS.map((subject, index) => {
+      const color = SUBJECT_COLORS[index % SUBJECT_COLORS.length];
+      return (
+        <div key={subject.id} className="group cursor-pointer" onClick={() => onNavigate('subjects')}>
+          <div className="aspect-[3/4] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1 transition-all p-4 flex flex-col justify-between overflow-hidden relative">
+
+            {/* Colored triangle + icon — top right */}
+            <div
+              className="absolute top-0 right-0 w-16 h-16"
+              style={{
+                background: `linear-gradient(225deg, ${color} 50%, transparent 50%)`,
+              }}
+            >
+              <span className="absolute top-2 right-2 text-white text-lg leading-none">
+                {subject.icon}
+              </span>
+            </div>
+
+            {/* Thin colored top border accent */}
+            <div
+              className="absolute top-0 left-0 right-0 h-1"
+              style={{ backgroundColor: color }}
+            />
+
+            <div className="mt-1">
+              <div className="text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-1">
+                {subject.name}
               </div>
-            ))}
+              <h4
+                className="text-lg font-bold leading-tight transition-colors"
+                style={{ color: 'inherit' }}
+              >
+                {subject.name}
+              </h4>
+              <p className="text-[10px] text-gray-500 mt-1">{subject.chapters.length} Chapters</p>
+            </div>
+
+            <div
+              className="flex items-center font-bold text-xs gap-1 group-hover:gap-2 transition-all"
+              style={{ color }}
+            >
+              Open <ArrowRight size={12} />
+            </div>
           </div>
         </div>
+      );
+    })}
+
+    {/* Add subject card */}
+    <div className="aspect-[3/4] border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:text-black hover:border-black transition-all cursor-pointer group">
+      <Plus size={32} className="group-hover:scale-110 transition-transform" />
+      <span className="font-bold mt-2 text-xs uppercase tracking-widest">Add Subject</span>
+    </div>
+  </div>
+    </div >
+  );
+};
+const Timeline = ({ checkpoints, currentStep, color }) => {
+  return (
+    <div className="w-full">
+
+      {/* Progress Line Container */}
+      <div className="relative flex items-center justify-between">
+
+        {/* Base line */}
+        <div className="absolute left-0 right-0 h-[2px] bg-gray-200 top-1/2 -translate-y-1/2" />
+
+        {/* Active line */}
+        <div
+          className="absolute left-0 h-[2px] top-1/2 -translate-y-1/2 transition-all duration-500"
+          style={{
+            width: `${(currentStep / (checkpoints.length - 1)) * 100}%`,
+            backgroundColor: color
+          }}
+        />
+
+        {/* Dots */}
+        {checkpoints.map((step, idx) => (
+          <div key={idx} className="relative flex flex-col items-center">
+
+            <div
+              className={`w-2.5 h-2.5 rounded-full border transition-all duration-300 ${
+                idx <= currentStep ? 'border-black' : 'border-gray-300'
+              }`}
+              style={{
+                backgroundColor: idx <= currentStep ? color : 'white',
+                transform: idx === currentStep ? 'scale(1.3)' : 'scale(1)'
+              }}
+            >
+              {/* Active glow */}
+              {idx === currentStep && (
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full animate-ping opacity-70" />
+              )}
+            </div>
+
+            {/* Labels */}
+            <span className="mt-1 text-[8px] font-bold text-gray-500 uppercase">
+              {step}
+            </span>
+          </div>
+        ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {SUBJECTS.map((subject, index) => {
-          const color = SUBJECT_COLORS[index % SUBJECT_COLORS.length];
-          return (
-            <div key={subject.id} className="group cursor-pointer" onClick={() => onNavigate('subjects')}>
-              <div className="aspect-[3/4] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1 transition-all p-4 flex flex-col justify-between overflow-hidden relative">
-
-                {/* Colored triangle + icon — top right */}
-                <div
-                  className="absolute top-0 right-0 w-16 h-16"
-                  style={{
-                    background: `linear-gradient(225deg, ${color} 50%, transparent 50%)`,
-                  }}
-                >
-                  <span className="absolute top-2 right-2 text-white text-lg leading-none">
-                    {subject.icon}
-                  </span>
-                </div>
-
-                {/* Thin colored top border accent */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-1"
-                  style={{ backgroundColor: color }}
-                />
-
-                <div className="mt-1">
-                  <div className="text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-1">
-                    {subject.name}
-                  </div>
-                  <h4
-                    className="text-lg font-bold leading-tight transition-colors"
-                    style={{ color: 'inherit' }}
-                  >
-                    {subject.name}
-                  </h4>
-                  <p className="text-[10px] text-gray-500 mt-1">{subject.chapters.length} Chapters</p>
-                </div>
-
-                <div
-                  className="flex items-center font-bold text-xs gap-1 group-hover:gap-2 transition-all"
-                  style={{ color }}
-                >
-                  Open <ArrowRight size={12} />
-                </div>
-              </div>
-            </div>
-          );
-        })}
-
-        {/* Add subject card */}
-        <div className="aspect-[3/4] border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:text-black hover:border-black transition-all cursor-pointer group">
-          <Plus size={32} className="group-hover:scale-110 transition-transform" />
-          <span className="font-bold mt-2 text-xs uppercase tracking-widest">Add Subject</span>
-        </div>
+      {/* Footer */}
+      <div className="flex justify-between mt-2 text-[8px] text-gray-400 font-semibold">
+        <span>STEP {currentStep + 1} OF {checkpoints.length}</span>
+        <span>{Math.round((currentStep / (checkpoints.length - 1)) * 100)}%</span>
       </div>
     </div>
   );
