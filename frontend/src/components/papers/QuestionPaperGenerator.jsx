@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   FileText, 
   BrainCircuit,
@@ -14,33 +14,53 @@ export const QuestionPaperGenerator = ({ onGenerate }) => {
   const [difficulty, setDifficulty] = useState('medium');
   const [isGenerating, setIsGenerating] = useState(false);
   const [lastGeneratedPaper, setLastGeneratedPaper] = useState(null);
+  const [subjects, setSubjects] = useState([]);
+  useEffect(()=>{
+    const fetchSubject = async () => {
+      const res = await fetch("http://localhost:3000/api/question-paper/subjects")
+      const data = await res.json();
+      console.log("Subjects:", data.subjects);
+      setSubjects(data.subjects);
+    }
+    fetchSubject();
 
-  const handleGenerate = () => {
+    return () => {
+      setSubjects([]);
+    }
+  }, [])
+  const handleGenerate = async () => {
+  console.log("Available Subjects:", subjects);
     if (!subject || !chapter) return;
     setIsGenerating(true);
-    
-    setTimeout(() => {
+    const response = await fetch("http://localhost:3000/api/question-paper/generate", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ subject, chapter, difficulty, 
+         totalMarks: 20,
+  numQuestions: 5,
+  includeAnswers: false
+
+        })
+    })
       const newPaper = {
         id: Date.now().toString(),
         subject,
         chapter,
         difficulty,
-        questions: [
-          `1. Explain the fundamental concepts of ${chapter} in detail.`,
-          `2. What are the key components and their functions in ${chapter}?`,
-          `3. Provide a real-world example of how ${chapter} is applied in daily life.`,
-          `4. Compare and contrast different approaches to ${chapter}.`,
-          `5. Discuss the future implications of ${chapter} in the current context.`,
+        questions: response.ok ? (await response.json()).paper.questions : [
+          `What is the main concept of ${chapter}?`,
+          `Explain a real-world application of ${chapter}.`,
         ],
         timestamp: Date.now(),
         status: 'generated'
       };
+      console.log("Generated Paper:", newPaper);
       setLastGeneratedPaper(newPaper);
       onGenerate(newPaper);
       setIsGenerating(false);
       setSubject('');
       setChapter('');
-    }, 2000);
+    
   };
 
   const handleDownload = () => {
@@ -87,7 +107,7 @@ export const QuestionPaperGenerator = ({ onGenerate }) => {
                   className="w-full p-3 border-2 border-black focus:outline-none bg-white font-bold"
                 >
                   <option value="">Choose a subject...</option>
-                  {SUBJECTS.map(s => <option key={s.id} value={s.name}>{s.name}</option>)}
+                  {subjects.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
 
@@ -183,8 +203,8 @@ export const QuestionPaperGenerator = ({ onGenerate }) => {
                   
                   <div className="space-y-4">
                     {lastGeneratedPaper.questions.map((q, idx) => (
-                      <div key={idx} className="p-4 bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                        <p className="handwritten text-lg leading-relaxed">{q}</p>
+                      <div key={q.number} className="p-4 bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <p className="handwritten text-lg leading-relaxed">{q.question}</p>
                       </div>
                     ))}
                   </div>

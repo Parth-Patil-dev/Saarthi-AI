@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, act } from 'react';
+
 import { 
   MessageCircle,
 } from 'lucide-react';
@@ -11,6 +12,7 @@ import { SUBJECTS } from './constants';
 import { Onboarding } from './components/onboarding/Onboarding';
 import { Sidebar } from './components/layout/Sidebar';
 import { Dashboard } from './components/dashboard/Dashboard';
+import  MCQSection  from './components/papers/mcqAttempts';      
 import { TextbookReader } from './components/reader/TextbookReader';
 import { MyNotes } from './components/notes/MyNotes';
 import { MyProgress } from './components/progress/MyProgress';
@@ -245,6 +247,7 @@ export default function App() {
                 {activeTab === 'settings' && (
                   <Settings profile={profile} onReset={handleResetAccount} />
                 )}
+                {activeTab === 'MCQ Practice' && <MCQSection />}
               </>
             )}
           </main>
@@ -271,8 +274,7 @@ export default function App() {
               console.log('Opening AI Assistant');
               setIsAssistantOpen(true);
             }}
-            className="fixed bottom-6 right-6 px-6 h-16 bg-black text-white rounded-full flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.3)] transition-all z-[100] cursor-pointer pointer-events-auto"
-          >
+className="fixed bottom-6 right-6 px-6 h-14 bg-amber-400 text-black rounded-full flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] hover:bg-amber-500 transition-all z-[100] cursor-pointer pointer-events-auto border-2 border-black"          >
             <MessageCircle size={28} />
             <span className="font-bold handwritten text-lg">Chat with AI</span>
           </motion.button>

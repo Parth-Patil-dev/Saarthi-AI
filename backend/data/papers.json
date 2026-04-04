@@ -309,5 +309,105 @@
         "marks": 4
       }
     ]
+  },
+  "mcq-1775324963421-j9w": {
+    "id": "mcq-1775324963421-j9w",
+    "subject": "Science",
+    "chapter": "electromagnetism",
+    "difficulty": "medium",
+    "totalMarks": 6,
+    "marksPerQuestion": 1,
+    "numQuestions": 6,
+    "includeAnswers": true,
+    "generatedAt": "2026-04-04T17:49:23.421Z",
+    "type": "mcq",
+    "totalTime": 960,
+    "timePerQ": 2,
+    "questions": [
+      {
+        "number": 1,
+        "question": "Which of the following is not an example of electromagnetic induction?",
+        "marks": 1,
+        "answer": "Electromagnetic radiation can be used to create heat.",
+        "options": [
+          "When a magnet moves across a conductor, electricity is induced.",
+          "Electricity and magnetism are two different phenomena.",
+          "Electromagnetic radiation can be used to create heat.",
+          "An electric current will always produce a magnetic field."
+        ],
+        "correct": 2,
+        "explanation": "A. Electricity and magnetism are two different phenomena. This is the correct answer because electromagnetic induction only occurs when there is relative motion between a conductor and a magnetic field."
+      },
+      {
+        "number": 2,
+        "question": "What is the equation for calculating magnetic field strength?",
+        "marks": 1,
+        "answer": "B = uH/4",
+        "options": [
+          "B = uH/2",
+          "B = uH/4",
+          "B = uH/8",
+          "B = 4uH/2"
+        ],
+        "correct": 1,
+        "explanation": "B. This is the correct answer because the equation for calculating magnetic field strength is B = μ₀H/2πr, where H is the magnetic field intensity and r is the distance from the source of the magnetic field."
+      },
+      {
+        "number": 3,
+        "question": "Which type of magnet is stronger: bar magnets or electromagnets?",
+        "marks": 1,
+        "answer": "Both types of magnets have the same strength.",
+        "options": [
+          "Bar magnets are always stronger than electromagnets.",
+          "Electromagnets can be made stronger by increasing the current flowing through them.",
+          "Electromagnets are weaker than bar magnets because they do not have a permanent magnetic field.",
+          "Both types of magnets have the same strength."
+        ],
+        "correct": 3,
+        "explanation": "B. This is the correct answer because electromagnets can be made stronger by increasing the current flowing through them. Bar magnets have a fixed magnetic field and do not change in strength based on current flow."
+      },
+      {
+        "number": 4,
+        "question": "What is an electromagnetic wave?",
+        "marks": 1,
+        "answer": "A wave that carries both electric and magnetic fields.",
+        "options": [
+          "A particle that travels at the speed of light.",
+          "A wave that carries both electric and magnetic fields.",
+          "A type of radiation used in X-rays and cancer therapy.",
+          "A type of energy produced by atoms in a radioactive material."
+        ],
+        "correct": 1,
+        "explanation": "B. This is the correct answer because an electromagnetic wave carries both electric and magnetic fields oscillating perpendicular to each other."
+      },
+      {
+        "number": 5,
+        "question": "What is an electric field?",
+        "marks": 1,
+        "answer": "A type of electromagnetic radiation.",
+        "options": [
+          "A region of space where there are no charges.",
+          "A region of space where there are more negative charges than positive charges.",
+          "A region of space where the electric force on a charged particle is zero.",
+          "A type of electromagnetic radiation."
+        ],
+        "correct": 3,
+        "explanation": "B. This is the correct answer because an electric field is a region of space where there are more positive charges than negative charges and electric forces exist between charged particles in that region."
+      },
+      {
+        "number": 6,
+        "question": "What is a magnetic dipole?",
+        "marks": 1,
+        "answer": "An object with no charge.",
+        "options": [
+          "A pair of positively charged particles.",
+          "A pair of negatively charged particles.",
+          "Two magnets with opposite poles facing each other.",
+          "An object with no charge."
+        ],
+        "correct": 3,
+        "explanation": "B. This is the correct answer because a magnetic dipole is an object that has a north and south pole that create a magnetic field around it similar to a bar magnet."
+      }
+    ]
   }
 }

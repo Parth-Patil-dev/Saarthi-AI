@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { generateAIResponse } from '../../services/geminiService';
 import { 
   ChevronLeft, 
   X, 
@@ -13,7 +14,7 @@ import { motion, AnimatePresence } from 'motion/react';
 export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
   const [selectedText, setSelectedText] = useState('');
   const [showAIAction, setShowAIAction] = useState(false);
-  const [aiResponse, setAiResponse] = useState(null);
+  const [aiResponse, setAiResponse] = useState({type: '', content: ''});
 
   const handleMouseUp = () => {
     const text = window.getSelection()?.toString();
@@ -25,7 +26,7 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
     }
   };
 
-  const askAI = (action) => {
+  const askAI = async (action) => {
     let content = '';
     if (profile.aptitude === 'beginner') {
       content = `Since you're just starting, let me explain this simply: Imagine ${selectedText.substring(0, 20)}... is like a small seed. Just as a seed has everything needed to grow into a big tree, this concept is the starting point for everything else in ${subject.name}. In our village, we see this when we plant crops...`;
@@ -34,11 +35,17 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
     } else {
       content = `Excellent! You've mastered the basics. Now, let's look at the advanced implications of "${selectedText.substring(0, 20)}...". This structural complexity is what allows for higher-order biological functions. Think of it like the complex irrigation systems used in modern farming...`;
     }
+    const prompt = await `${selectedText}`;
+
+    const response = await generateAIResponse(prompt, '', null);
+    console.log("Prompting AI with:", prompt);
 
     setAiResponse({
       type: action,
-      content: `I'm analyzing "${selectedText.substring(0, 30)}...". Here is a ${action} for you: \n\n${content}`
+      // content:"Cramer’s Rule is a mathematical technique used to solve a system of linear equations with the help of determinants. It is applicable only when the number of equations is equal to the number of unknown variables. In this method, we first form the coefficient matrix and calculate its determinant (D). Then, for each variable, we replace the corresponding column of the matrix with the constants column and find a new determinant (such as Dₓ or Dᵧ). The value of each variable is obtained by dividing its respective determinant by the original determinant (D). If the value of D is zero, the system does not have a unique solution and may either have no solution or infinitely many solutions. This rule is efficient for solving small systems like 2×2 or 3×3 equations"   // Fallback to our own generated content if AI fails
+      content: `I'm analyzing "${selectedText.substring(0, 30)}...". Here is a ${action} for you: \n\n${response.reply}`
     });
+    console.log("AI Response:", aiResponse); 
     setShowAIAction(false);
   };
 
@@ -224,7 +231,9 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
             )}
           </AnimatePresence>
 
-          {aiResponse && (
+          {
+          true  &&
+          (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -235,9 +244,15 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
               </button>
               <div className="flex items-center gap-2 mb-4 text-blue-600">
                 <BrainCircuit size={24} />
-                <h3 className="text-xl font-bold">AI {aiResponse.type}</h3>
+                <h3 className="text-xl font-bold">AI 
+                  {aiResponse.type === 'Summary' && ' Summary'}
+                  {aiResponse.type === 'Explanation' && ' Explanation'}
+                  {aiResponse.type === 'Example' && ' Real-world Example'}
+                </h3>
               </div>
-              <p className="text-lg leading-relaxed whitespace-pre-wrap">{aiResponse.content}</p>
+              <p className="text-lg leading-relaxed whitespace-pre-wrap">
+                {aiResponse.content}
+              </p>
             </motion.div>
           )}
         </div>

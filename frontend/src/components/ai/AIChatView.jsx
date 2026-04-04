@@ -31,12 +31,12 @@ export const AIChatView = ({ profile, conversations, onUpdateConversations }) =>
     Always use simple language, relatable examples from rural life (farming, village markets, local festivals), and be encouraging. 
     If the student asks about a specific subject, provide clear explanations and connect them to real-world scenarios they might see in their village.`;
 
-    const response = await generateAIResponse(input, systemInstruction);
+    const response = await generateAIResponse(input, systemInstruction, activeConv);
     
     const aiMsg = { 
       id: (Date.now() + 1).toString(), 
       role: 'assistant', 
-      content: response, 
+      content: response.reply, 
       timestamp: Date.now() 
     };
     
@@ -57,13 +57,14 @@ export const AIChatView = ({ profile, conversations, onUpdateConversations }) =>
     setActiveConvId(newId);
   };
 
-  const deleteChat = (id, e) => {
+  const deleteChat = async (id, e) => {
     e.stopPropagation();
     const newConvs = conversations.filter(c => c.id !== id);
     onUpdateConversations(newConvs);
     if (activeConvId === id) {
       setActiveConvId(newConvs[0]?.id || null);
     }
+    // const res = await fetch("http://localhost:3000/api/chat")
   };
 
   return (

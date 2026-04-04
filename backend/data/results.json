@@ -288,5 +288,76 @@
         }
       ]
     }
+  },
+  "result-1775325048524-i76r": {
+    "id": "result-1775325048524-i76r",
+    "paperId": "mcq-1775324963421-j9w",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Science",
+    "chapter": "electromagnetism",
+    "difficulty": "medium",
+    "totalMarks": 6,
+    "marksAwarded": 3,
+    "percentage": 50,
+    "grade": "D",
+    "submittedAt": "2026-04-04T17:50:48.525Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "Which of the following is not an example of electromagnetic induction?",
+        "maxMarks": 1,
+        "studentAnswer": "Electricity and magnetism are two different phenomena.",
+        "marksAwarded": 1,
+        "feedback": "Please include a complete answer with correct information about electromagnetic induction.",
+        "correctAnswer": "Electromagnetic radiation can be used to create heat."
+      },
+      {
+        "number": 2,
+        "question": "What is the equation for calculating magnetic field strength?",
+        "maxMarks": 1,
+        "studentAnswer": "B = 4uH/2",
+        "marksAwarded": 1,
+        "feedback": "The correct equation for calculating magnetic field strength is B = uH/4",
+        "correctAnswer": "B = uH/4"
+      },
+      {
+        "number": 3,
+        "question": "Which type of magnet is stronger: bar magnets or electromagnets?",
+        "maxMarks": 1,
+        "studentAnswer": "Bar magnets are always stronger than electromagnets.",
+        "marksAwarded": 0,
+        "feedback": "Could not evaluate.",
+        "correctAnswer": "Both types of magnets have the same strength."
+      },
+      {
+        "number": 4,
+        "question": "What is an electromagnetic wave?",
+        "maxMarks": 1,
+        "studentAnswer": "A wave that carries both electric and magnetic fields.",
+        "marksAwarded": 1,
+        "feedback": "Correct! An electromagnetic wave is a type of wave that consists of changing electric and magnetic fields.",
+        "correctAnswer": "A wave that carries both electric and magnetic fields."
+      },
+      {
+        "number": 5,
+        "question": "What is an electric field?",
+        "maxMarks": 1,
+        "studentAnswer": "A region of space where there are more negative charges than positive charges.",
+        "marksAwarded": 0,
+        "feedback": "Your answer is not entirely correct as an electric field is actually a type of electromagnetic radiation, like light or radio waves. However, you have partially answered the question correctly by mentioning that it's related to electromagnetic radiation.",
+        "correctAnswer": "A type of electromagnetic radiation."
+      },
+      {
+        "number": 6,
+        "question": "What is a magnetic dipole?",
+        "maxMarks": 1,
+        "studentAnswer": "Two magnets with opposite poles facing each other.",
+        "marksAwarded": 0,
+        "feedback": "Could not evaluate.",
+        "correctAnswer": "An object with no charge."
+      }
+    ],
+    "advice": null
   }
 }

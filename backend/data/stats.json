@@ -52,16 +52,16 @@
   },
   "student-default": {
     "studentId": "student-default",
-    "totalAttempts": 5,
-    "totalMarksAwarded": 57,
-    "totalMarksPossible": 100,
+    "totalAttempts": 6,
+    "totalMarksAwarded": 60,
+    "totalMarksPossible": 106,
     "averageScore": 57,
     "bySubject": {
       "Science": {
-        "attempts": 2,
-        "totalAwarded": 26,
-        "totalPossible": 40,
-        "average": 65
+        "attempts": 3,
+        "totalAwarded": 29,
+        "totalPossible": 46,
+        "average": 63
       },
       "Mathematics": {
         "attempts": 3,
@@ -78,9 +78,9 @@
         "average": 70
       },
       "medium": {
-        "attempts": 3,
-        "totalAwarded": 33,
-        "totalPossible": 60,
+        "attempts": 4,
+        "totalAwarded": 36,
+        "totalPossible": 66,
         "average": 55
       },
       "hard": {
@@ -122,6 +122,14 @@
         "totalAwarded": 12,
         "totalPossible": 20,
         "average": 60
+      },
+      "Science::electromagnetism": {
+        "subject": "Science",
+        "chapter": "electromagnetism",
+        "attempts": 1,
+        "totalAwarded": 3,
+        "totalPossible": 6,
+        "average": 50
       }
     },
     "bestTopic": {
@@ -140,7 +148,7 @@
       "totalPossible": 40,
       "average": 48
     },
-    "lastAttemptAt": "2026-04-04T13:29:07.261Z",
-    "updatedAt": "2026-04-04T13:29:07.267Z"
+    "lastAttemptAt": "2026-04-04T17:50:48.525Z",
+    "updatedAt": "2026-04-04T17:50:48.532Z"
   }
 }

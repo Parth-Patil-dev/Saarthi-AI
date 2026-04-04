@@ -1,13 +1,25 @@
 import React from 'react';
-import { 
-  ChevronRight, 
-  Plus, 
-  ArrowRight, 
-  Activity, 
-  Award, 
-  Zap 
+import {
+  ChevronRight,
+  Plus,
+  ArrowRight,
+  Activity,
+  Award,
+  Zap
 } from 'lucide-react';
 import { SUBJECTS } from '../../constants';
+
+// One color per subject slot — cycles if there are more subjects
+const SUBJECT_COLORS = [
+  '#f59e0b', // amber
+  '#10b981', // emerald
+  '#e11d48', // rose
+  '#8b5cf6', // violet
+  '#0ea5e9', // sky
+  '#f97316', // orange
+  '#06b6d4', // cyan
+  '#84cc16', // lime
+];
 
 export const Dashboard = ({ profile, onNavigate }) => {
   return (
@@ -60,25 +72,55 @@ export const Dashboard = ({ profile, onNavigate }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {SUBJECTS.map(subject => (
-          <div key={subject.id} className="group cursor-pointer" onClick={() => onNavigate('subjects')}>
-            <div className="aspect-[3/4] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1 transition-all p-4 flex flex-col justify-between overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-12 h-12 bg-black text-white flex items-center justify-center font-bold text-xl" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }}>
-                <span className="absolute top-1 right-1">{subject.icon}</span>
-              </div>
-              
-              <div>
-                <div className="text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-1">{subject.name}</div>
-                <h4 className="text-lg font-bold leading-tight group-hover:text-[#e91e63] transition-colors">{subject.name}</h4>
-                <p className="text-[10px] text-gray-500 mt-1">{subject.chapters.length} Chapters</p>
-              </div>
+        {SUBJECTS.map((subject, index) => {
+          const color = SUBJECT_COLORS[index % SUBJECT_COLORS.length];
+          return (
+            <div key={subject.id} className="group cursor-pointer" onClick={() => onNavigate('subjects')}>
+              <div className="aspect-[3/4] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1 transition-all p-4 flex flex-col justify-between overflow-hidden relative">
 
-              <div className="flex items-center text-[#e91e63] font-bold text-xs group-hover:gap-2 transition-all">
-                Open <ArrowRight size={12} />
+                {/* Colored triangle + icon — top right */}
+                <div
+                  className="absolute top-0 right-0 w-16 h-16"
+                  style={{
+                    background: `linear-gradient(225deg, ${color} 50%, transparent 50%)`,
+                  }}
+                >
+                  <span className="absolute top-2 right-2 text-white text-lg leading-none">
+                    {subject.icon}
+                  </span>
+                </div>
+
+                {/* Thin colored top border accent */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1"
+                  style={{ backgroundColor: color }}
+                />
+
+                <div className="mt-1">
+                  <div className="text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-1">
+                    {subject.name}
+                  </div>
+                  <h4
+                    className="text-lg font-bold leading-tight transition-colors"
+                    style={{ color: 'inherit' }}
+                  >
+                    {subject.name}
+                  </h4>
+                  <p className="text-[10px] text-gray-500 mt-1">{subject.chapters.length} Chapters</p>
+                </div>
+
+                <div
+                  className="flex items-center font-bold text-xs gap-1 group-hover:gap-2 transition-all"
+                  style={{ color }}
+                >
+                  Open <ArrowRight size={12} />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
+
+        {/* Add subject card */}
         <div className="aspect-[3/4] border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:text-black hover:border-black transition-all cursor-pointer group">
           <Plus size={32} className="group-hover:scale-110 transition-transform" />
           <span className="font-bold mt-2 text-xs uppercase tracking-widest">Add Subject</span>
