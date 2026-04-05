@@ -375,5 +375,235 @@
         }
       ]
     }
+  },
+  "result-1775363047403-o1tv": {
+    "id": "result-1775363047403-o1tv",
+    "paperId": "mcq-1775362993355-jdp",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Mathematics",
+    "chapter": "trignometry",
+    "difficulty": "easy",
+    "totalMarks": 5,
+    "marksAwarded": 3,
+    "percentage": 60,
+    "grade": "C",
+    "submittedAt": "2026-04-05T04:24:07.403Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "Question 1: What is a key concept of \"trignometry\" in Mathematics?",
+        "maxMarks": 1,
+        "studentAnswer": "The primary definition of trignometry",
+        "marksAwarded": 1,
+        "feedback": "Good job! Your response shows that you understand the concept of trignometry well.",
+        "correctAnswer": "The primary definition of trignometry"
+      },
+      {
+        "number": 2,
+        "question": "Question 2: What is a key concept of \"trignometry\" in Mathematics?",
+        "maxMarks": 1,
+        "studentAnswer": "An unrelated concept from another topic",
+        "marksAwarded": 1,
+        "feedback": "Please stick to the topic and provide a clear definition of trignometry in your answer.",
+        "correctAnswer": "The primary definition of trignometry"
+      },
+      {
+        "number": 3,
+        "question": "Question 3: What is a key concept of \"trignometry\" in Mathematics?",
+        "maxMarks": 1,
+        "studentAnswer": "A historical fact unrelated to trignometry",
+        "marksAwarded": 1,
+        "feedback": "Could not evaluate.",
+        "correctAnswer": "The primary definition of trignometry"
+      },
+      {
+        "number": 4,
+        "question": "Question 4: What is a key concept of \"trignometry\" in Mathematics?",
+        "maxMarks": 1,
+        "studentAnswer": "An unrelated concept from another topic",
+        "marksAwarded": 0,
+        "feedback": "Please provide a clear and concise answer that directly addresses the key concept being tested.",
+        "correctAnswer": "The primary definition of trignometry"
+      },
+      {
+        "number": 5,
+        "question": "Question 5: What is a key concept of \"trignometry\" in Mathematics?",
+        "maxMarks": 1,
+        "studentAnswer": "An unrelated concept from another topic",
+        "marksAwarded": 0,
+        "feedback": "Please provide a valid question and an answer related to the question.",
+        "correctAnswer": "The primary definition of trignometry"
+      }
+    ],
+    "advice": {
+      "overall": "You scored 60%. Review the questions you got wrong and focus on understanding the core concepts.",
+      "perQuestion": [
+        {
+          "number": 4,
+          "advice": "Review this topic and practice writing more complete answers."
+        },
+        {
+          "number": 5,
+          "advice": "Review this topic and practice writing more complete answers."
+        }
+      ]
+    }
+  },
+  "result-1775365318168-dko": {
+    "id": "result-1775365318168-dko",
+    "paperId": "mcq-1775365177270-gzy",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Mathematics",
+    "chapter": "trigonometry",
+    "difficulty": "easy",
+    "type": "mcq",
+    "submittedAt": "2026-04-05T05:01:58.168Z",
+    "timeSpent": 62,
+    "totalMarksAwarded": 1,
+    "totalMarks": 5,
+    "percentage": 20,
+    "passed": false,
+    "gradedQuestions": [
+      {
+        "questionNumber": 1,
+        "question": "What is the unit of measurement for angles in trigonometry?",
+        "selectedOption": 2,
+        "selectedOptionText": "Pentagons",
+        "correctOption": 1,
+        "correctOptionText": "Degrees",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The correct answer is Radians. Degrees are used to measure angles on a circle, and pentagons and squares have no relevance in measuring angles."
+      },
+      {
+        "questionNumber": 2,
+        "question": "What is the Pythagorean Theorem?",
+        "selectedOption": 1,
+        "selectedOptionText": "a²-b²=c²",
+        "correctOption": 2,
+        "correctOptionText": "√(a²+b²)=c²",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The correct answer is a²+b²=c². The Pythagorean Theorem relates the sides of a right-angled triangle."
+      },
+      {
+        "questionNumber": 3,
+        "question": "What is the value of sin90°?",
+        "selectedOption": 2,
+        "selectedOptionText": "1",
+        "correctOption": 2,
+        "correctOptionText": "1",
+        "isCorrect": true,
+        "marksAwarded": 1,
+        "marksAvailable": 1,
+        "explanation": "The correct answer is √2/2. The sine function in trigonometry represents the ratio of the length of the side opposite to an angle to the hypotenuse of a right-angled triangle."
+      },
+      {
+        "questionNumber": 4,
+        "question": "What is the value of cos60°?",
+        "selectedOption": 0,
+        "selectedOptionText": "1/2",
+        "correctOption": 1,
+        "correctOptionText": "√3/2",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The correct answer is 1/2. The cosine function in trigonometry represents the ratio of the length of the adjacent side to the hypotenuse of a right-angled triangle."
+      },
+      {
+        "questionNumber": 5,
+        "question": "What is the value of tan45°?",
+        "selectedOption": 0,
+        "selectedOptionText": "1",
+        "correctOption": 1,
+        "correctOptionText": "√2",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The correct answer is 1. The tangent function in trigonometry represents the ratio of the opposite side to the adjacent side in a right-angled triangle."
+      }
+    ]
+  },
+  "result-1775365962678-b0j": {
+    "id": "result-1775365962678-b0j",
+    "paperId": "mcq-1775362993355-jdp",
+    "studentId": "student-default",
+    "studentName": "Student",
+    "subject": "Mathematics",
+    "chapter": "trignometry",
+    "difficulty": "easy",
+    "type": "mcq",
+    "submittedAt": "2026-04-05T05:12:42.678Z",
+    "timeSpent": 7,
+    "totalMarksAwarded": 0,
+    "totalMarks": 5,
+    "percentage": 0,
+    "passed": false,
+    "gradedQuestions": [
+      {
+        "questionNumber": 1,
+        "question": "Question 1: What is a key concept of \"trignometry\" in Mathematics?",
+        "selectedOption": 2,
+        "selectedOptionText": "A common misconception about trignometry",
+        "correctOption": 0,
+        "correctOptionText": "The primary definition of trignometry",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "questionNumber": 2,
+        "question": "Question 2: What is a key concept of \"trignometry\" in Mathematics?",
+        "selectedOption": -1,
+        "selectedOptionText": "(No answer)",
+        "correctOption": 0,
+        "correctOptionText": "The primary definition of trignometry",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "questionNumber": 3,
+        "question": "Question 3: What is a key concept of \"trignometry\" in Mathematics?",
+        "selectedOption": 2,
+        "selectedOptionText": "A common misconception about trignometry",
+        "correctOption": 0,
+        "correctOptionText": "The primary definition of trignometry",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "questionNumber": 4,
+        "question": "Question 4: What is a key concept of \"trignometry\" in Mathematics?",
+        "selectedOption": -1,
+        "selectedOptionText": "(No answer)",
+        "correctOption": 0,
+        "correctOptionText": "The primary definition of trignometry",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "questionNumber": 5,
+        "question": "Question 5: What is a key concept of \"trignometry\" in Mathematics?",
+        "selectedOption": -1,
+        "selectedOptionText": "(No answer)",
+        "correctOption": 0,
+        "correctOptionText": "The primary definition of trignometry",
+        "isCorrect": false,
+        "marksAwarded": 0,
+        "marksAvailable": 1,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      }
+    ]
   }
 }

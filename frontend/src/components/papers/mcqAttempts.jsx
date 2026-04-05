@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   BrainCircuit, ChevronRight, ChevronLeft, CheckCircle2,
   AlertCircle, Trophy, RefreshCcw, Sparkles, Clock,
@@ -25,6 +25,13 @@ const api = {
     return data.subjects;
   },
 
+  async getSavedMCQPapers() {
+    const res  = await fetch(`${BASE_URL}/api/mcq/papers`);
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error?.message || 'Failed to load saved MCQ papers');
+    return data.papers || [];
+  },
+
   // POST /api/mcq/generate
   async generateMCQ(subject, chapter, difficulty) {
     const res  = await fetch(`${BASE_URL}/api/mcq/generate`, {
@@ -38,30 +45,31 @@ const api = {
   },
 
   // POST /api/mcq/submit — saves result into grading stats
-  async submitMCQ(paperId, paper, answers) {
-    // Convert answers map {questionIndex: optionIndex} to array with option text
-    const answersArray = paper.questions.map((q, idx) => ({
-      questionNumber:     q.number,
-      selectedOption:     answers[idx] ?? -1,
-      selectedOptionText: answers[idx] !== undefined
-        ? q.options[answers[idx]]
-        : '(No answer)',
-    }));
+  // In MCQSection.jsx — api.submitMCQ (replace the existing method)
+async submitMCQ(paperId, paper, answers, timeSpent) {
+  const answersArray = paper.questions.map((q, idx) => ({
+    questionNumber:     q.number,
+    selectedOption:     answers[idx] ?? -1,          // raw index
+    selectedOptionText: answers[idx] !== undefined
+      ? q.options[answers[idx]]
+      : '(No answer)',
+  }));
 
-    const res  = await fetch(`${BASE_URL}/api/mcq/submit`, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({
-        paperId,
-        studentId:   STUDENT_ID,
-        studentName: 'Student',
-        answers:     answersArray,
-      }),
-    });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.error?.message || 'Submit failed');
-    return data.result;
-  },
+  const res  = await fetch(`${BASE_URL}/api/mcq/submit`, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({
+      paperId,
+      studentId:   STUDENT_ID,
+      studentName: 'Student',
+      answers:     answersArray,
+      timeSpent,                                      // pass seconds used
+    }),
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error?.message || 'Submit failed');
+  return data.result;
+},
 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -73,11 +81,41 @@ function MCQGeneratorForm({ onStart }) {
   const [difficulty,   setDifficulty]   = useState('medium');
   const [isGenerating, setIsGenerating] = useState(false);
   const [subjects,     setSubjects]     = useState([]);
+  const [savedPapers,  setSavedPapers]  = useState([]);
+  const [loadingSaved, setLoadingSaved] = useState(true);
+  const [openSubjects, setOpenSubjects] = useState({});
+  const [previewPaper, setPreviewPaper] = useState(null);
   const [error,        setError]        = useState(null);
 
   useEffect(() => {
-    api.getSubjects().then(setSubjects).catch(() => {});
+    Promise.all([api.getSubjects(), api.getSavedMCQPapers()])
+      .then(([subjectList, papers]) => {
+        setSubjects(subjectList);
+        setSavedPapers(papers);
+
+        const folders = papers.reduce((acc, p) => {
+          if (p?.subject) acc[p.subject] = true;
+          return acc;
+        }, {});
+        setOpenSubjects(folders);
+      })
+      .catch(() => {})
+      .finally(() => setLoadingSaved(false));
   }, []);
+
+  const papersBySubject = useMemo(() => {
+    return savedPapers.reduce((acc, paper) => {
+      const folder = paper.subject || 'Other';
+      if (!acc[folder]) acc[folder] = [];
+      acc[folder].push(paper);
+      return acc;
+    }, {});
+  }, [savedPapers]);
+
+  const orderedSubjects = useMemo(() => {
+    return Object.keys(papersBySubject)
+      .sort((a, b) => a.localeCompare(b));
+  }, [papersBySubject]);
 
   const cfg = DIFFICULTY_CONFIG[difficulty];
 
@@ -207,6 +245,129 @@ function MCQGeneratorForm({ onStart }) {
 
           </div>
         </div>
+
+        <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold handwritten">Previous MCQ Papers</h2>
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
+              {savedPapers.length} saved
+            </span>
+          </div>
+
+          {loadingSaved ? (
+            <div className="p-5 border-2 border-dashed border-gray-300 text-gray-500 font-bold text-sm">
+              Loading saved papers...
+            </div>
+          ) : savedPapers.length === 0 ? (
+            <div className="p-5 border-2 border-dashed border-gray-300 text-gray-400 font-bold text-sm">
+              No saved MCQ papers yet. Generate one to start building your subject folders.
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {orderedSubjects.map(folder => {
+                const items = papersBySubject[folder] || [];
+                const isOpen = openSubjects[folder] !== false;
+
+                return (
+                  <div key={folder} className="border-2 border-black bg-gray-50">
+                    <button
+                      onClick={() => setOpenSubjects(prev => ({ ...prev, [folder]: !isOpen }))}
+                      className="w-full flex items-center justify-between px-4 py-3 bg-white border-b-2 border-black font-bold text-left"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 border border-black" />
+                        {folder}
+                      </span>
+                      <span className="text-xs uppercase tracking-wider text-gray-500">
+                        {items.length} paper{items.length !== 1 ? 's' : ''} {isOpen ? '▾' : '▸'}
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="divide-y divide-gray-200 bg-white">
+                        {items.map(paper => (
+                          <div key={paper.id} className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                            <div>
+                              <div className="font-bold text-base leading-tight">{paper.chapter}</div>
+                              <div className="text-xs text-gray-500 font-bold uppercase tracking-wide mt-1">
+                                {paper.difficulty} · {paper.numQuestions} Qs · {Math.round((paper.totalTime || 0) / 60)} min · {new Date(paper.generatedAt).toLocaleDateString()}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => setPreviewPaper(paper)}
+                                className="px-3 py-2 border-2 border-black bg-white font-bold text-sm hover:bg-gray-100 transition-all"
+                              >
+                                View Paper
+                              </button>
+                              <button
+                                onClick={() => onStart(paper)}
+                                className="px-4 py-2 border-2 border-black bg-yellow-400 font-bold text-sm hover:bg-yellow-500 transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                              >
+                                Re-attempt
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {previewPaper && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+            <div className="w-full max-w-2xl bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-h-[85vh] overflow-hidden">
+              <div className="flex items-center justify-between px-5 py-3 border-b-2 border-black bg-yellow-100">
+                <div>
+                  <h3 className="text-xl font-bold handwritten">{previewPaper.subject} - {previewPaper.chapter}</h3>
+                  <p className="text-xs text-gray-600 font-bold uppercase tracking-wider mt-0.5">
+                    {previewPaper.difficulty} · {previewPaper.numQuestions} questions
+                  </p>
+                </div>
+                <button
+                  onClick={() => setPreviewPaper(null)}
+                  className="px-2 py-1 border-2 border-black bg-white font-bold hover:bg-gray-100"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="p-5 overflow-y-auto max-h-[60vh] space-y-3">
+                {previewPaper.questions?.map((q, idx) => (
+                  <div key={idx} className="border-2 border-black p-3 bg-gray-50">
+                    <div className="font-bold text-sm mb-1">Q{idx + 1}. {q.question}</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-gray-700">
+                      {(q.options || []).map((opt, optIdx) => (
+                        <div key={optIdx} className="border border-gray-300 bg-white px-2 py-1">
+                          {String.fromCharCode(65 + optIdx)}. {opt}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="px-5 py-3 border-t-2 border-black bg-white flex justify-end gap-2">
+                <button
+                  onClick={() => setPreviewPaper(null)}
+                  className="px-4 py-2 border-2 border-black bg-white font-bold hover:bg-gray-100"
+                >
+                  Back
+                </button>
+                <button
+                  onClick={() => onStart(previewPaper)}
+                  className="px-4 py-2 border-2 border-black bg-yellow-400 font-bold hover:bg-yellow-500 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                >
+                  Re-attempt this paper
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -226,9 +387,9 @@ function MCQAttempt({ paper, onBack }) {
   useEffect(() => {
     if (showResults && !submitted) {
       setSubmitted(true);
-      api.submitMCQ(paper.id, paper, answers).catch(err =>
-        console.warn('MCQ submit failed (progress may not update):', err.message)
-      );
+      // In the useEffect that fires on showResults
+api.submitMCQ(paper.id, paper, answers, paper.totalTime - timeLeft)
+  .catch(err => console.warn('MCQ submit failed:', err.message));
     }
   }, [showResults]);
 

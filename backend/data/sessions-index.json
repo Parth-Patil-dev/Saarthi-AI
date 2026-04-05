@@ -3,8 +3,8 @@
     "id": "1",
     "title": "hi",
     "createdAt": "2026-04-05T03:20:55.688Z",
-    "updatedAt": "2026-04-05T03:40:57.471Z",
-    "messageCount": 6
+    "updatedAt": "2026-04-05T04:22:07.101Z",
+    "messageCount": 8
   },
   "default": {
     "id": "default",
@@ -128,6 +128,27 @@
     "title": "chemical reaction",
     "createdAt": "2026-04-05T03:22:04.196Z",
     "updatedAt": "2026-04-05T03:22:09.650Z",
+    "messageCount": 2
+  },
+  "textbook-math": {
+    "id": "textbook-math",
+    "title": "The student is studying \"Linear Equations in Two Variables\" …",
+    "createdAt": "2026-04-05T03:59:47.077Z",
+    "updatedAt": "2026-04-05T04:40:02.226Z",
+    "messageCount": 8
+  },
+  "1775362024447": {
+    "id": "1775362024447",
+    "title": "explain heronns formula",
+    "createdAt": "2026-04-05T04:07:20.250Z",
+    "updatedAt": "2026-04-05T04:08:46.927Z",
+    "messageCount": 2
+  },
+  "1775362259769": {
+    "id": "1775362259769",
+    "title": "explain pythagoras theorem",
+    "createdAt": "2026-04-05T04:11:09.225Z",
+    "updatedAt": "2026-04-05T04:12:10.991Z",
     "messageCount": 2
   }
 }

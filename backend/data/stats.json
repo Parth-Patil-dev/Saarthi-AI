@@ -52,9 +52,9 @@
   },
   "student-default": {
     "studentId": "student-default",
-    "totalAttempts": 6,
-    "totalMarksAwarded": 60,
-    "totalMarksPossible": 106,
+    "totalAttempts": 7,
+    "totalMarksAwarded": 63,
+    "totalMarksPossible": 111,
     "averageScore": 57,
     "bySubject": {
       "Science": {
@@ -64,18 +64,18 @@
         "average": 63
       },
       "Mathematics": {
-        "attempts": 3,
-        "totalAwarded": 31,
-        "totalPossible": 60,
+        "attempts": 4,
+        "totalAwarded": 34,
+        "totalPossible": 65,
         "average": 52
       }
     },
     "byDifficulty": {
       "easy": {
-        "attempts": 1,
-        "totalAwarded": 14,
-        "totalPossible": 20,
-        "average": 70
+        "attempts": 2,
+        "totalAwarded": 17,
+        "totalPossible": 25,
+        "average": 68
       },
       "medium": {
         "attempts": 4,
@@ -130,6 +130,14 @@
         "totalAwarded": 3,
         "totalPossible": 6,
         "average": 50
+      },
+      "Mathematics::trignometry": {
+        "subject": "Mathematics",
+        "chapter": "trignometry",
+        "attempts": 1,
+        "totalAwarded": 3,
+        "totalPossible": 5,
+        "average": 60
       }
     },
     "bestTopic": {
@@ -148,7 +156,7 @@
       "totalPossible": 40,
       "average": 48
     },
-    "lastAttemptAt": "2026-04-04T17:50:48.525Z",
-    "updatedAt": "2026-04-04T17:50:48.532Z"
+    "lastAttemptAt": "2026-04-05T04:24:07.403Z",
+    "updatedAt": "2026-04-05T04:24:07.414Z"
   }
 }

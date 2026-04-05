@@ -19,17 +19,53 @@ const STATS_FILE   = path.join(DATA_DIR, 'stats.json');
 
 // ── Paper storage ─────────────────────────────────────────────────────────────
 
+// In grading.service.js — add these alongside savePaper
+
+// In-memory stores (swap for DB/file persistence as needed)
+const paperStore  = new Map();
+const resultStore = new Map();
+
 export async function savePaper(paper) {
-  const all = await readJSON(PAPERS_FILE);
-  all[paper.id] = paper;
-  await writeJSON(PAPERS_FILE, all);
+  paperStore.set(paper.id, paper);
+  await persistPaper(paper);
   return paper;
 }
 
 export async function getPaper(paperId) {
+  const cached = paperStore.get(paperId);
+  if (cached) return cached;
+
   const all = await readJSON(PAPERS_FILE);
-  return all[paperId] || null;
+  const paper = all[paperId] ?? null;
+
+  if (paper) {
+    paperStore.set(paperId, paper);
+  }
+
+  return paper;
 }
+
+export async function saveResult(result) {
+  // Group results by studentId for easy lookup
+  const key = `${result.studentId}::${result.paperId}`;
+  resultStore.set(key, result);
+
+  // Also keep a chronological list per student
+  const historyKey = `history::${result.studentId}`;
+  const history    = resultStore.get(historyKey) ?? [];
+  history.push(result);
+  resultStore.set(historyKey, history);
+
+  // Persist to disk for APIs that read from results.json
+  await persistResult(result);
+
+  return result;
+}
+
+export async function getResultsForStudent(studentId) {
+  return resultStore.get(`history::${studentId}`) ?? [];
+}
+
 
 export async function listPapers() {
   const all = await readJSON(PAPERS_FILE);
@@ -96,11 +132,18 @@ export async function getAdviceForResult(resultId) {
 
 // ── Results CRUD ──────────────────────────────────────────────────────────────
 
-async function saveResult(result) {
+async function persistResult(result) {
   const all = await readJSON(RESULTS_FILE);
   all[result.id] = result;
   await writeJSON(RESULTS_FILE, all);
   logger.info(`[Grading] Saved result ${result.id} — ${result.marksAwarded}/${result.totalMarks}`);
+}
+
+async function persistPaper(paper) {
+  const all = await readJSON(PAPERS_FILE);
+  all[paper.id] = paper;
+  await writeJSON(PAPERS_FILE, all);
+  logger.info(`[Grading] Saved paper ${paper.id} — ${paper.subject} / ${paper.chapter}`);
 }
 
 export async function getResult(resultId) {

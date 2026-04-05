@@ -487,5 +487,91 @@
         "marks": 16
       }
     ]
+  },
+  "mcq-1775362993355-jdp": {
+    "id": "mcq-1775362993355-jdp",
+    "subject": "Mathematics",
+    "chapter": "trignometry",
+    "difficulty": "easy",
+    "totalMarks": 5,
+    "marksPerQuestion": 1,
+    "numQuestions": 5,
+    "includeAnswers": true,
+    "generatedAt": "2026-04-05T04:23:13.355Z",
+    "type": "mcq",
+    "totalTime": 900,
+    "timePerQ": 3,
+    "questions": [
+      {
+        "number": 1,
+        "question": "Question 1: What is a key concept of \"trignometry\" in Mathematics?",
+        "marks": 1,
+        "answer": "The primary definition of trignometry",
+        "options": [
+          "The primary definition of trignometry",
+          "An unrelated concept from another topic",
+          "A common misconception about trignometry",
+          "A historical fact unrelated to trignometry"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "number": 2,
+        "question": "Question 2: What is a key concept of \"trignometry\" in Mathematics?",
+        "marks": 1,
+        "answer": "The primary definition of trignometry",
+        "options": [
+          "The primary definition of trignometry",
+          "An unrelated concept from another topic",
+          "A common misconception about trignometry",
+          "A historical fact unrelated to trignometry"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "number": 3,
+        "question": "Question 3: What is a key concept of \"trignometry\" in Mathematics?",
+        "marks": 1,
+        "answer": "The primary definition of trignometry",
+        "options": [
+          "The primary definition of trignometry",
+          "An unrelated concept from another topic",
+          "A common misconception about trignometry",
+          "A historical fact unrelated to trignometry"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "number": 4,
+        "question": "Question 4: What is a key concept of \"trignometry\" in Mathematics?",
+        "marks": 1,
+        "answer": "The primary definition of trignometry",
+        "options": [
+          "The primary definition of trignometry",
+          "An unrelated concept from another topic",
+          "A common misconception about trignometry",
+          "A historical fact unrelated to trignometry"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      },
+      {
+        "number": 5,
+        "question": "Question 5: What is a key concept of \"trignometry\" in Mathematics?",
+        "marks": 1,
+        "answer": "The primary definition of trignometry",
+        "options": [
+          "The primary definition of trignometry",
+          "An unrelated concept from another topic",
+          "A common misconception about trignometry",
+          "A historical fact unrelated to trignometry"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of trignometry."
+      }
+    ]
   }
 }

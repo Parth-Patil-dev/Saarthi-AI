@@ -37,7 +37,7 @@ export async function getTrend(req, res, next) {
     // ── Overall regression ──────────────────────────────────────────────────
     const overallPoints = buildRegressionPoints(results);
     const overallReg    = linearRegression(overallPoints);
-    const overallNext   = overallReg.predict(overallPoints.length + 1);
+    const overallNext   = predictRealisticFuture(overallPoints, overallReg, overallPoints.length + 1);
 
     const overall = {
       ...overallReg,
@@ -72,7 +72,7 @@ export async function getTrend(req, res, next) {
       const reg = linearRegression(pts);
       bySubject[subject] = {
         ...reg,
-        predictedNext: reg.predict(pts.length + 1),
+        predictedNext: predictRealisticFuture(pts, reg, pts.length + 1),
         dataPoints:    pts.length,
         chartPoints:   buildChartPoints(pts, reg, 2),
         insufficient:  false,
@@ -110,10 +110,30 @@ function buildChartPoints(points, reg, futurePredictions = 2) {
       x,
       date:      `Prediction ${i}`,
       actual:    null,
-      trend:     reg.predict(x),
+      trend:     predictRealisticFuture(points, reg, x),
       predicted: true,
     });
   }
 
   return chart;
+}
+
+function predictRealisticFuture(points, reg, x) {
+  const rawPrediction = reg.predict(x);
+  const lastActual    = points[points.length - 1]?.y ?? rawPrediction;
+  const recentPoints  = points.slice(-3);
+  const recentAvg     = recentPoints.length
+    ? recentPoints.reduce((sum, p) => sum + p.y, 0) / recentPoints.length
+    : lastActual;
+
+  // Blend linear extrapolation with recent performance so future values stay realistic.
+  const blended = (rawPrediction * 0.45) + (recentAvg * 0.55);
+
+  // Avoid unrealistic jumps between consecutive future tests.
+  const stepAhead      = Math.max(1, x - points.length);
+  const maxRisePerStep = 4;
+  const maxFutureValue = Math.min(100, lastActual + (maxRisePerStep * stepAhead));
+
+  const realistic = Math.min(blended, maxFutureValue);
+  return Math.min(100, Math.max(0, Math.round(realistic * 10) / 10));
 }
