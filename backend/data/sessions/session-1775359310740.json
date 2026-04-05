@@ -1,0 +1,16 @@
+{
+  "id": "1775359310740",
+  "title": "chemical reaction",
+  "createdAt": "2026-04-05T03:22:04.196Z",
+  "updatedAt": "2026-04-05T03:22:09.650Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "chemical reaction"
+    },
+    {
+      "role": "assistant",
+      "content": " A chemical reaction is a process that leads to the transformation of one set of chemical substances to another. During a chemical reaction, atoms are rearranged in different ways, resulting in the formation of new molecules or compounds. Chemical reactions can release or absorb energy in the form of heat or light. Examples of chemical reactions include combustion (burning) and photosynthesis.\n"
+    }
+  ]
+}

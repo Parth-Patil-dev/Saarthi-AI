@@ -151,3 +151,56 @@ async function callModel(systemPrompt, messages) {
     default:      return callMockModel(systemPrompt, messages);
   }
 }
+
+// ── Streaming entry point ─────────────────────────────────────────────────────
+
+/**
+ * Stream a reply token by token.
+ * @param {{ message, sessionId, onToken, onDone, onError }}
+ */
+export async function streamChatReply({ message, sessionId = DEFAULT_SESSION, onToken, onDone, onError }) {
+  try {
+    const session = await getOrCreateSession(sessionId);
+    session.messages.push({ role: 'user', content: message });
+    session.updatedAt = new Date().toISOString();
+    if (session.messages.length === 1) {
+      session.title = message.slice(0, 60) + (message.length > 60 ? '…' : '');
+    }
+
+    const systemPrompt   = buildSystemPrompt();
+    const recentMessages = session.messages.slice(-CONTEXT_WINDOW);
+
+    logger.info(`[Chat stream] session="${sessionId}" mode=${AI_MODE}`);
+
+    let fullReply = '';
+
+    if (AI_MODE === 'rest') {
+      const { streamRestModel } = await import('./adapters/rest.adapter.js');
+      fullReply = await streamRestModel(systemPrompt, recentMessages, onToken);
+    } else {
+      // Mock: simulate streaming with delays
+      const mockReply = `[Mock stream] You said: "${message.slice(0, 80)}". Set AI_MODE=rest for real responses.`;
+      for (const word of mockReply.split(' ')) {
+        const token = word + ' ';
+        fullReply += token;
+        onToken(token);
+        await new Promise(r => setTimeout(r, 40));
+      }
+    }
+
+    session.messages.push({ role: 'assistant', content: fullReply });
+    session.updatedAt = new Date().toISOString();
+    sessionCache.set(sessionId, session);
+    await saveSession(sessionId, session);
+
+    onDone({
+      reply:         fullReply,
+      sessionId,
+      historyLength: session.messages.length,
+      model:         process.env.AI_MODEL_NAME || AI_MODE,
+    });
+  } catch (err) {
+    logger.error(`[Chat stream] Error: ${err.message}`);
+    onError(err);
+  }
+}

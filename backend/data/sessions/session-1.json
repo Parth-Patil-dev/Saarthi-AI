@@ -1,0 +1,32 @@
+{
+  "id": "1",
+  "title": "hi",
+  "createdAt": "2026-04-05T03:20:55.688Z",
+  "updatedAt": "2026-04-05T03:40:57.471Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": " Hello! How can I assist you today?\n"
+    },
+    {
+      "role": "user",
+      "content": "thermodynamics"
+    },
+    {
+      "role": "assistant",
+      "content": " Sure thing! Thermodynamics is the study of heat transfer between systems. It involves analyzing how energy moves in different types of matter and how it affects their physical properties. \n\n"
+    },
+    {
+      "role": "user",
+      "content": "pythagoras theorem"
+    },
+    {
+      "role": "assistant",
+      "content": " The Pythagorean Theorem is a fundamental principle in mathematics that states in a right-angled triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides.\n\n"
+    }
+  ]
+}
