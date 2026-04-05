@@ -32,6 +32,13 @@ const api = {
     return data.papers || [];
   },
 
+  async getResults() {
+    const res  = await fetch(`${BASE_URL}/api/grading/results?studentId=${STUDENT_ID}`);
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error?.message || 'Failed to load results');
+    return data.results || [];
+  },
+
   // POST /api/mcq/generate
   async generateMCQ(subject, chapter, difficulty) {
     const res  = await fetch(`${BASE_URL}/api/mcq/generate`, {
@@ -72,6 +79,59 @@ async submitMCQ(paperId, paper, answers, timeSpent) {
 },
 };
 
+function MiniScoreGraph({ attempts }) {
+  if (!attempts.length) return null;
+
+  const width = 280;
+  const height = 120;
+  const padding = 14;
+  const values = attempts.map(a => a.percentage);
+  const maxValue = 100;
+  const minValue = 0;
+  const span = Math.max(1, values.length - 1);
+
+  const points = values.map((value, idx) => {
+    const x = padding + ((width - padding * 2) * idx) / span;
+    const y = padding + ((height - padding * 2) * (maxValue - value)) / (maxValue - minValue);
+    return { x, y, value };
+  });
+
+  const linePoints = points.map(p => `${p.x},${p.y}`).join(' ');
+
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-32 overflow-visible">
+      <defs>
+        <linearGradient id="mcqTrendFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.28" />
+          <stop offset="100%" stopColor="#fbbf24" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#e5e7eb" strokeWidth="2" />
+      <polyline
+        fill="none"
+        stroke="#111827"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        points={linePoints}
+      />
+      <polyline
+        fill="url(#mcqTrendFill)"
+        stroke="none"
+        points={`${padding},${height - padding} ${linePoints} ${width - padding},${height - padding}`}
+      />
+      {points.map((point, idx) => (
+        <g key={idx}>
+          <circle cx={point.x} cy={point.y} r="4.5" fill={idx === points.length - 1 ? '#f59e0b' : '#fff'} stroke="#111827" strokeWidth="2" />
+          <text x={point.x} y={point.y - 10} textAnchor="middle" className="fill-gray-600" fontSize="10" fontWeight="700">
+            {point.value}%
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // FORM
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -82,16 +142,18 @@ function MCQGeneratorForm({ onStart }) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [subjects,     setSubjects]     = useState([]);
   const [savedPapers,  setSavedPapers]  = useState([]);
+  const [savedResults, setSavedResults] = useState([]);
   const [loadingSaved, setLoadingSaved] = useState(true);
   const [openSubjects, setOpenSubjects] = useState({});
   const [previewPaper, setPreviewPaper] = useState(null);
   const [error,        setError]        = useState(null);
 
   useEffect(() => {
-    Promise.all([api.getSubjects(), api.getSavedMCQPapers()])
-      .then(([subjectList, papers]) => {
+    Promise.all([api.getSubjects(), api.getSavedMCQPapers(), api.getResults()])
+      .then(([subjectList, papers, results]) => {
         setSubjects(subjectList);
         setSavedPapers(papers);
+        setSavedResults(results);
 
         const folders = papers.reduce((acc, p) => {
           if (p?.subject) acc[p.subject] = true;
@@ -116,6 +178,20 @@ function MCQGeneratorForm({ onStart }) {
     return Object.keys(papersBySubject)
       .sort((a, b) => a.localeCompare(b));
   }, [papersBySubject]);
+
+  const previewAttempts = useMemo(() => {
+    if (!previewPaper) return [];
+    return savedResults
+      .filter(result => result.paperId === previewPaper.id)
+      .sort((a, b) => new Date(a.submittedAt) - new Date(b.submittedAt));
+  }, [savedResults, previewPaper]);
+
+  const previewImprovement = useMemo(() => {
+    if (previewAttempts.length < 2) return null;
+    const first = previewAttempts[0]?.percentage ?? 0;
+    const last  = previewAttempts[previewAttempts.length - 1]?.percentage ?? 0;
+    return Math.round((last - first) * 10) / 10;
+  }, [previewAttempts]);
 
   const cfg = DIFFICULTY_CONFIG[difficulty];
 
@@ -232,7 +308,7 @@ function MCQGeneratorForm({ onStart }) {
               disabled={!subject || !chapter || isGenerating}
               className="w-full py-4 bg-black text-white font-bold text-xl transition-all
                          shadow-[6px_6px_0px_0px_rgba(234,179,8,1)]
-                         hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(234,179,8,1)]
+                         hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(234,179,8,1)]
                          disabled:opacity-40 disabled:cursor-not-allowed
                          flex items-center justify-center gap-3 handwritten"
             >
@@ -320,7 +396,7 @@ function MCQGeneratorForm({ onStart }) {
 
         {previewPaper && (
           <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-            <div className="w-full max-w-2xl bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-h-[85vh] overflow-hidden">
+            <div className="w-full max-w-4xl bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-h-[88vh] overflow-hidden">
               <div className="flex items-center justify-between px-5 py-3 border-b-2 border-black bg-yellow-100">
                 <div>
                   <h3 className="text-xl font-bold handwritten">{previewPaper.subject} - {previewPaper.chapter}</h3>
@@ -336,19 +412,79 @@ function MCQGeneratorForm({ onStart }) {
                 </button>
               </div>
 
-              <div className="p-5 overflow-y-auto max-h-[60vh] space-y-3">
-                {previewPaper.questions?.map((q, idx) => (
-                  <div key={idx} className="border-2 border-black p-3 bg-gray-50">
-                    <div className="font-bold text-sm mb-1">Q{idx + 1}. {q.question}</div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-gray-700">
-                      {(q.options || []).map((opt, optIdx) => (
-                        <div key={optIdx} className="border border-gray-300 bg-white px-2 py-1">
-                          {String.fromCharCode(65 + optIdx)}. {opt}
-                        </div>
-                      ))}
+              <div className="p-5 overflow-y-auto max-h-[70vh] space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-4 border-2 border-black bg-blue-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Previous Attempts</div>
+                    <div className="text-3xl font-bold handwritten text-blue-700">{previewAttempts.length}</div>
+                  </div>
+                  <div className="p-4 border-2 border-black bg-green-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Latest Score</div>
+                    <div className="text-3xl font-bold handwritten text-green-700">
+                      {previewAttempts.length ? `${previewAttempts[previewAttempts.length - 1].percentage}%` : '—'}
                     </div>
                   </div>
-                ))}
+                  <div className="p-4 border-2 border-black bg-amber-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Improvement</div>
+                    <div className="text-3xl font-bold handwritten text-amber-700">
+                      {previewImprovement === null ? '—' : `${previewImprovement > 0 ? '+' : ''}${previewImprovement}%`}
+                    </div>
+                  </div>
+                </div>
+
+                {previewAttempts.length > 0 && (
+                  <div className="p-4 border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-lg font-bold handwritten">Score Progress</h4>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                        {previewAttempts[0].submittedAt ? new Date(previewAttempts[0].submittedAt).toLocaleDateString() : ''}
+                      </span>
+                    </div>
+                    <MiniScoreGraph attempts={previewAttempts} />
+                  </div>
+                )}
+
+                <div className="space-y-3">
+                  <h4 className="text-lg font-bold handwritten">Previous Scores</h4>
+                  {previewAttempts.length === 0 ? (
+                    <div className="p-4 border-2 border-dashed border-gray-300 text-gray-400 font-bold text-sm bg-gray-50">
+                      No attempts yet for this paper.
+                    </div>
+                  ) : (
+                    previewAttempts.map((attempt, idx) => (
+                      <div key={attempt.id} className="p-4 border-2 border-black bg-gray-50 flex items-center justify-between gap-4">
+                        <div>
+                          <div className="font-bold text-base leading-tight">Attempt {idx + 1}</div>
+                          <div className="text-xs text-gray-500 font-bold uppercase tracking-wide mt-1">
+                            {new Date(attempt.submittedAt).toLocaleDateString()} · {attempt.totalMarksAwarded}/{attempt.totalMarks} marks · Grade {attempt.grade}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-2xl font-bold handwritten">{attempt.percentage}%</div>
+                          <div className={`text-[10px] font-bold uppercase tracking-widest ${attempt.percentage >= 70 ? 'text-green-600' : attempt.percentage >= 40 ? 'text-yellow-600' : 'text-red-500'}`}>
+                            {idx === 0 ? 'First attempt' : idx === previewAttempts.length - 1 ? 'Latest attempt' : 'Progress'}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-lg font-bold handwritten">Paper Content</h4>
+                  {previewPaper.questions?.map((q, idx) => (
+                    <div key={idx} className="border-2 border-black p-3 bg-gray-50">
+                      <div className="font-bold text-sm mb-1">Q{idx + 1}. {q.question}</div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-gray-700">
+                        {(q.options || []).map((opt, optIdx) => (
+                          <div key={optIdx} className="border border-gray-300 bg-white px-2 py-1">
+                            {String.fromCharCode(65 + optIdx)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="px-5 py-3 border-t-2 border-black bg-white flex justify-end gap-2">
@@ -403,6 +539,24 @@ api.submitMCQ(paper.id, paper, answers, paper.totalTime - timeLeft)
     }, 1000);
     return () => clearInterval(timer);
   }, [showResults]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key !== 'Enter' || showResults) return;
+      event.preventDefault();
+
+      setCurrentIdx(prev => {
+        if (prev === paper.questions.length - 1) {
+          setShowResults(true);
+          return prev;
+        }
+        return Math.min(paper.questions.length - 1, prev + 1);
+      });
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [paper.questions.length, showResults]);
 
   const formatTime = s => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
   const score = paper.questions.reduce((acc, q, i) => acc + (answers[i] === q.correct ? 1 : 0), 0);

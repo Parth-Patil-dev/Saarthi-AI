@@ -1,0 +1,16 @@
+{
+  "id": "1775370065196",
+  "title": "Reflection of light",
+  "createdAt": "2026-04-05T06:21:19.290Z",
+  "updatedAt": "2026-04-05T06:21:28.017Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Reflection of light"
+    },
+    {
+      "role": "assistant",
+      "content": " Sure, I can help you understand how reflection works. When light travels from one medium to another (such as air to water), it changes speed and direction. This is because the speed of light depends on the properties of the medium through which it passes. When light hits a surface, some of it is absorbed by that surface while some of it bounces back in a different direction. The bouncing back of light from a surface is called reflection. When we see ourselves in a mirror, for example, we are seeing our image reflected by the smooth, shiny surface of the mirror.\n"
+    }
+  ]
+}

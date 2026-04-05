@@ -1,0 +1,16 @@
+{
+  "id": "1775370020431",
+  "title": "bayes theorem",
+  "createdAt": "2026-04-05T06:20:28.728Z",
+  "updatedAt": "2026-04-05T06:20:41.698Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "bayes theorem"
+    },
+    {
+      "role": "assistant",
+      "content": " Bayesian theorem is a mathematical formula that allows for the calculation of probabilities in situations where prior knowledge or beliefs are available. It involves updating these beliefs based on new evidence or data collected, allowing for more accurate predictions or decisions to be made. The formula takes into account the probability of observing a certain event, given a particular set of circumstances, as well as the probability of those circumstances happening regardless of whether the event occurred. This allows us to make informed decisions and estimate probabilities in complex situations.\n"
+    }
+  ]
+}

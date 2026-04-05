@@ -134,8 +134,8 @@
     "id": "textbook-math",
     "title": "The student is studying \"Linear Equations in Two Variables\" …",
     "createdAt": "2026-04-05T03:59:47.077Z",
-    "updatedAt": "2026-04-05T05:56:23.289Z",
-    "messageCount": 11
+    "updatedAt": "2026-04-05T06:33:48.074Z",
+    "messageCount": 15
   },
   "1775362024447": {
     "id": "1775362024447",
@@ -149,6 +149,20 @@
     "title": "explain pythagoras theorem",
     "createdAt": "2026-04-05T04:11:09.225Z",
     "updatedAt": "2026-04-05T04:12:10.991Z",
+    "messageCount": 2
+  },
+  "1775370020431": {
+    "id": "1775370020431",
+    "title": "bayes theorem",
+    "createdAt": "2026-04-05T06:20:28.728Z",
+    "updatedAt": "2026-04-05T06:20:41.698Z",
+    "messageCount": 2
+  },
+  "1775370065196": {
+    "id": "1775370065196",
+    "title": "Reflection of light",
+    "createdAt": "2026-04-05T06:21:19.290Z",
+    "updatedAt": "2026-04-05T06:21:28.017Z",
     "messageCount": 2
   }
 }

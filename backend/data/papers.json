@@ -701,5 +701,155 @@
         "explanation": "The first option correctly defines the core concept of photosynthesis."
       }
     ]
+  },
+  "mcq-1775370261560-5d8": {
+    "id": "mcq-1775370261560-5d8",
+    "subject": "Science",
+    "chapter": "Photosynthesis",
+    "difficulty": "easy",
+    "totalMarks": 5,
+    "marksPerQuestion": 1,
+    "numQuestions": 5,
+    "includeAnswers": true,
+    "generatedAt": "2026-04-05T06:24:21.560Z",
+    "type": "mcq",
+    "totalTime": 900,
+    "timePerQ": 3,
+    "questions": [
+      {
+        "number": 1,
+        "question": "Question 1: What is a key concept of \"Photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of Photosynthesis",
+        "options": [
+          "The primary definition of Photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about Photosynthesis",
+          "A historical fact unrelated to Photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of Photosynthesis."
+      },
+      {
+        "number": 2,
+        "question": "Question 2: What is a key concept of \"Photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of Photosynthesis",
+        "options": [
+          "The primary definition of Photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about Photosynthesis",
+          "A historical fact unrelated to Photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of Photosynthesis."
+      },
+      {
+        "number": 3,
+        "question": "Question 3: What is a key concept of \"Photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of Photosynthesis",
+        "options": [
+          "The primary definition of Photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about Photosynthesis",
+          "A historical fact unrelated to Photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of Photosynthesis."
+      },
+      {
+        "number": 4,
+        "question": "Question 4: What is a key concept of \"Photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of Photosynthesis",
+        "options": [
+          "The primary definition of Photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about Photosynthesis",
+          "A historical fact unrelated to Photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of Photosynthesis."
+      },
+      {
+        "number": 5,
+        "question": "Question 5: What is a key concept of \"Photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of Photosynthesis",
+        "options": [
+          "The primary definition of Photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about Photosynthesis",
+          "A historical fact unrelated to Photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of Photosynthesis."
+      }
+    ]
+  },
+  "paper-1775370982435-jsgt": {
+    "id": "paper-1775370982435-jsgt",
+    "title": "Chemistry — Titration",
+    "subject": "Chemistry",
+    "chapter": "Titration",
+    "difficulty": "easy",
+    "totalMarks": 80,
+    "marksPerQuestion": 5,
+    "numQuestions": 10,
+    "includeAnswers": false,
+    "generatedAt": "2026-04-05T06:36:22.435Z",
+    "questions": [
+      {
+        "number": 1,
+        "question": "What is titration? a) The process of determining the concentration of a solution by measuring the volume of a second solution required to react with it b) The process of preparing a standard solution for analysis c) The process of balancing chemical equations d) The process of separating mixtures using various techniques",
+        "marks": 5
+      },
+      {
+        "number": 2,
+        "question": "Which of the following is NOT true about titration? a) It involves adding a measured amount of a solution (titrant) to another solution, usually until an endpoint is reached b) It can be used to determine the concentration of a substance in a solution by measuring its volume c) It requires a lot of equipment and specialized skills d) It can only be done with acids or bases as titrants",
+        "marks": 5
+      },
+      {
+        "number": 3,
+        "question": "What is an indicator? a) A type of glassware used for titration b) A chemical that changes color when the pH of a solution changes c) The amount of substance in a solution at equilibrium d) The temperature required to complete a reaction",
+        "marks": 5
+      },
+      {
+        "number": 4,
+        "question": "What is the difference between end-point and equivalence point? a) End-point is reached when the color change is noticeable, while equivalence point is reached when all of the titrant has been added b) Equivalence point is reached when all of the analyte has reacted with the titrant, while end-point is reached when a visible color change occurs c) End-point and equivalence points are the same thing d) None of the above",
+        "marks": 5
+      },
+      {
+        "number": 5,
+        "question": "Which of the following is an example of a strong acid? a) Acetic acid (found in vinegar) b) Citric acid (found in citrus fruits) c) Hydrochloric acid (used in stomach acid production) d) Sulfuric acid (used in car batteries)",
+        "marks": 5
+      },
+      {
+        "number": 6,
+        "question": "Which of the following is an example of a strong base? a) Sodium hydroxide (in bleach) b) Ammonia (in cleaning products) c) Potassium hydroxide (found in soap and drain cleaners) d) Calcium hydroxide (used to neutralize acid spills)",
+        "marks": 5
+      },
+      {
+        "number": 7,
+        "question": "How is a burette used in titration? a) To measure the volume of the analyte solution added during titration b) To add the titrant slowly while monitoring for a color change c) To mix the two solutions together in one container d) None of the above",
+        "marks": 5
+      },
+      {
+        "number": 8,
+        "question": "What is the pH scale used to measure? a) The temperature of a solution b) The concentration of a substance in a solution c) The acidity or basicity of a solution d) The volume of a gas produced during a reaction",
+        "marks": 5
+      },
+      {
+        "number": 9,
+        "question": "How can you ensure an accurate titration experiment? a) By using the same type and brand of glassware for all measurements b) By adding the titrant too quickly to prevent overshooting the endpoint c) By adding too much titrant in order to be safe d) None of the above",
+        "marks": 5
+      },
+      {
+        "number": 10,
+        "question": "What is the purpose of a standard solution? a) To provide a known concentration for comparison during titration b) To make sure that all equipment is properly calibrated c) To ensure that both the analyte and titrant are pure substances d) None of the above",
+        "marks": 5
+      }
+    ]
   }
 }
