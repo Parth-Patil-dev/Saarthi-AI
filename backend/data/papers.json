@@ -573,5 +573,133 @@
         "explanation": "The first option correctly defines the core concept of trignometry."
       }
     ]
+  },
+  "mcq-1775368813778-td3": {
+    "id": "mcq-1775368813778-td3",
+    "subject": "Science",
+    "chapter": "photosynthesis",
+    "difficulty": "medium",
+    "totalMarks": 8,
+    "marksPerQuestion": 1,
+    "numQuestions": 8,
+    "includeAnswers": true,
+    "generatedAt": "2026-04-05T06:00:13.778Z",
+    "type": "mcq",
+    "totalTime": 960,
+    "timePerQ": 2,
+    "questions": [
+      {
+        "number": 1,
+        "question": "Question 1: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 2,
+        "question": "Question 2: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 3,
+        "question": "Question 3: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 4,
+        "question": "Question 4: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 5,
+        "question": "Question 5: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 6,
+        "question": "Question 6: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 7,
+        "question": "Question 7: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      },
+      {
+        "number": 8,
+        "question": "Question 8: What is a key concept of \"photosynthesis\" in Science?",
+        "marks": 1,
+        "answer": "The primary definition of photosynthesis",
+        "options": [
+          "The primary definition of photosynthesis",
+          "An unrelated concept from another topic",
+          "A common misconception about photosynthesis",
+          "A historical fact unrelated to photosynthesis"
+        ],
+        "correct": 0,
+        "explanation": "The first option correctly defines the core concept of photosynthesis."
+      }
+    ]
   }
 }

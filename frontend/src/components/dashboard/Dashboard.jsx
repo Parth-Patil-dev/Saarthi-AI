@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   ChevronRight,
   Plus,
@@ -21,7 +21,47 @@ const SUBJECT_COLORS = [
   '#84cc16', // lime
 ];
 
+const BASE_URL = 'http://localhost:3000';
+const STUDENT_ID = 'student-default';
+
 export const Dashboard = ({ profile, onNavigate }) => {
+  const [stats, setStats] = useState(null);
+  const [trend, setTrend] = useState(null);
+
+  useEffect(() => {
+    Promise.all([
+      fetch(`${BASE_URL}/api/grading/stats/${STUDENT_ID}`).then(r => r.json()),
+      fetch(`${BASE_URL}/api/grading/stats/${STUDENT_ID}/trend`).then(r => r.json()),
+    ])
+      .then(([statsData, trendData]) => {
+        if (statsData?.success) setStats(statsData.stats || null);
+        if (trendData?.success) setTrend(trendData || null);
+      })
+      .catch(() => {});
+  }, []);
+
+  const improvementPct = useMemo(() => {
+    const avg = Number(stats?.averageScore ?? 0);
+    const predicted = Number(trend?.overall?.predictedNext);
+    const slope = Number(trend?.overall?.slope ?? 0);
+
+    if (Number.isFinite(predicted) && Number.isFinite(avg) && avg > 0) {
+      const fromPrediction = ((predicted - avg) / avg) * 100;
+      return Math.round(fromPrediction * 10) / 10;
+    }
+
+    // Fallback to slope-based improvement signal when prediction is unavailable.
+    return Math.round(slope * 10) / 10;
+  }, [stats, trend]);
+
+  const improvementTone = improvementPct > 0
+    ? { bg: 'bg-green-100', text: 'text-green-600' }
+    : improvementPct < 0
+      ? { bg: 'bg-red-100', text: 'text-red-600' }
+      : { bg: 'bg-yellow-100', text: 'text-yellow-700' };
+
+  const formattedImprovement = `${improvementPct > 0 ? '+' : ''}${improvementPct}%`;
+
   return (
     <div className="p-8 space-y-8">
       <header className="flex justify-between items-end">
@@ -30,18 +70,14 @@ export const Dashboard = ({ profile, onNavigate }) => {
           <p className="text-gray-600">Grade {profile.grade} • {profile.aptitude.charAt(0).toUpperCase() + profile.aptitude.slice(1)} Level</p>
         </div>
         <div className="flex gap-4">
-          <div className="card-notebook p-3 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => onNavigate('progress')}>
-            <div className="bg-orange-100 p-2 rounded-full"><Award className="text-orange-600" /></div>
+          <div
+            className="card-notebook p-3 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition-colors"
+            onClick={() => onNavigate('progress')}
+          >
+            <div className={`${improvementTone.bg} p-2 rounded-full`}><Activity className={improvementTone.text} /></div>
             <div>
-              <p className="text-xs text-gray-500">Points</p>
-              <p className="font-bold">1,250</p>
-            </div>
-          </div>
-          <div className="card-notebook p-3 flex items-center gap-3">
-            <div className="bg-green-100 p-2 rounded-full"><Activity className="text-green-600" /></div>
-            <div>
-              <p className="text-xs text-gray-500">Streak</p>
-              <p className="font-bold">5 Days</p>
+              <p className="text-xs text-gray-500">Improvement</p>
+              <p className="font-bold">{formattedImprovement}</p>
             </div>
           </div>
         </div>

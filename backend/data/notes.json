@@ -53,5 +53,16 @@
     "style": "detailed",
     "createdAt": "2026-04-04T22:23:52.014Z",
     "updatedAt": "2026-04-04T22:23:52.014Z"
+  },
+  "note-1775368034738-hzgt6": {
+    "id": "note-1775368034738-hzgt6",
+    "title": "newtons law of motion — Science",
+    "subject": "Science",
+    "chapter": "newtons law of motion",
+    "content": "# Key Concepts for Newton's Laws of Motion \n1. Every object at rest stays at rest unless acted upon by an external force, while every object in motion will continue moving in a straight line at a constant speed (inertia).\n2. The acceleration of an object is directly proportional to the force applied to it and inversely proportional to its mass (F=ma). \n3. Action-reaction pairs are equal in magnitude and opposite in direction, known as Newton's Third Law. \n\n# Definitions \n1. Force: A push or pull that can cause an object to accelerate \n2. Mass: The amount of matter in an object \n3. Inertia: An object’s resistance to changes in its motion \n4. Acceleration: The rate at which an object's velocity (speed and direction) change over time \n5. Newton: Sir Isaac Newton, who formulated the three laws of motion. \n\n# Important Points \n1. Newton's first law explains why seat belts are important – to prevent injury from a sudden stop or crash \n2. The second law is used in engineering and physics to calculate the force needed to move an object \n3. The third law explains how rockets work by expelling gas out of their engines, which causes them to move forward. \n\n# Examples \n1. A car traveling at a constant speed on a flat surface has no external forces acting upon it and therefore will continue moving in the same direction. \n2. When a person throws a ball, they apply force to it. The mass of the ball determines how much acceleration it experiences. \n3. If you try to push against a wall, your hand will experience an equal and opposite reaction force from the wall pushing back on your hand. \n\n# Activity: Newton's Laws in Action \n1. Watch a video or read a news article about a current event related to Newton’s laws of motion (e.g. a car crash, a soccer game, a rocket launch). Take notes on how the laws are demonstrated and explain it in your own words.",
+    "source": "ai-generated",
+    "style": "detailed",
+    "createdAt": "2026-04-05T05:47:14.738Z",
+    "updatedAt": "2026-04-05T05:47:14.738Z"
   }
 }

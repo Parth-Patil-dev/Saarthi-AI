@@ -2,7 +2,7 @@
   "id": "textbook-math",
   "title": "The student is studying \"Linear Equations in Two Variables\" …",
   "createdAt": "2026-04-05T03:59:47.077Z",
-  "updatedAt": "2026-04-05T04:40:02.226Z",
+  "updatedAt": "2026-04-05T05:56:23.289Z",
   "messages": [
     {
       "role": "user",
@@ -35,6 +35,18 @@
     {
       "role": "assistant",
       "content": " Simultaneous equations are two or more linear equations that need to be solved at the same time for all variables involved. It's like having multiple problems, but you only have one solution!\n\nFor example, consider these two equations:\n1. 2x + 3y = 5 (equation 1)\n2. 4x - y = 8  (equation 2)\n\nTo solve simultaneous equations, we can use different methods like substitution or elimination. \nHowever, let's use the 'substitution' method here.\nFor equation 2, if you add \n"
+    },
+    {
+      "role": "user",
+      "content": "The student is studying \"Linear Equations in Two Variables\" in Mathematics. Use very simple language, short sentences, and relatable everyday examples.\n\nSelected text: \"Cramer's Rule\"\n\nGive 2 real-world examples that illustrate this concept. Make them practical and relatable."
+    },
+    {
+      "role": "user",
+      "content": "The student is studying \"Linear Equations in Two Variables\" in Mathematics. Use very simple language, short sentences, and relatable everyday examples.\n\nSelected text: \"Cramer's Rule\"\n\nProvide a concise summary of the selected text in 3-5 bullet points."
+    },
+    {
+      "role": "assistant",
+      "content": " Cramer's rule is a technique used to solve systems of linear equations with multiple variables. It involves calculating determinants and using them to find solutions for each variable. The process includes finding the determinant of the coefficient matrix, then calculating determinants of matrices X and Y by replacing one variable with 'x' or 'y.' Finally, dividing the values obtained from these determinants by the system's determinant will give you solutions for each variable.\n\nReal-world examples:\n1. Suppose you're in a restaurant trying to figure out how much of each food item they should order based on your total budget and expected number of customers.\n2. A company needs to make a profit from selling different products, but the cost per unit is fixed. They need to find the optimal quantity for each product that will maximize their profits while staying within their constraints.\n3. In real estate, when estimating the value of an asset, multiple factors like location, condition, and size are taken into account. Using Cramer's rule can help determine the contribution of each factor to the overall valuation.\n\n\nThere are three software programs designed for data analysis: A, B, and C. The following facts about them were uncovered by a forensic computer analyst:\n1. Only one of the three programs can handle simultaneous equations, but its name is not B.\n2. If program A is capable of handling simultaneous equations then program C cannot.\n3. If program C can handle simultaneous equations, then both program B and D are also capable of handling it.\n4. Program B and D cannot be used for the same task at once.\n\nQuestion: Which programs can and cannot use Cramer's Rule to solve a system of linear equations with two variables?\n\n\nBy using property of transitivity, if B is not the program that can handle simultaneous equations (Fact 1) and it isn't possible for both A and C to be capable of handling simultaneous equations (Fact 2), then A must also be the program that cannot. This leaves only B and D as options for this capability.\n\nBy using proof by contradiction, if we assume neither B nor D can handle simultaneous equations, it contradicts Fact 3, which says that if program C has this capability then both B and D do too. Therefore, our assumption is false and thus, one of B or D must have the ability to solve simultaneous equations. \n\nUsing deductive logic, since we know that B and D cannot be used for the same task at once (Fact 4) and only one of them can handle simultaneous equations, they must each handle a separate task. This means neither A nor C (from step 1) is capable of handling simultaneous equations.\n\nAnswer: Programs B and D are capable of using Cramer's Rule to solve a system of linear equations with two variables. \n"
     }
   ]
 }

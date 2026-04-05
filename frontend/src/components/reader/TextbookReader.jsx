@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import {
   ChevronLeft, X, FileText, BrainCircuit,
   Zap, CheckCircle2, MessageSquare, Loader2
@@ -86,6 +86,24 @@ const ACTION_META = {
   Example:     { icon: Zap,         label: 'Real-world Example', color: 'text-amber-600',  bg: 'bg-amber-50',  border: 'border-amber-200'  },
 };
 
+function renderInlineBold(text = '') {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, idx) => {
+    const boldMatch = part.match(/^\*\*([^*]+)\*\*$/);
+    if (boldMatch) return <strong key={idx} className="font-black">{boldMatch[1]}</strong>;
+    return <React.Fragment key={idx}>{part}</React.Fragment>;
+  });
+}
+
+function cleanForCompare(str = '') {
+  return str
+    .toLowerCase()
+    .replace(/[’']/g, '')
+    .replace(/\./g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
   const [selectedText,  setSelectedText]  = useState('');
@@ -94,8 +112,56 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
   const [isStreaming,   setIsStreaming]   = useState(false);
   const [streamingText, setStreamingText] = useState('');
   const [activeAction,  setActiveAction]  = useState('');
+  const [quizProgress,  setQuizProgress]  = useState({});
 
   const abortRef = useRef(false); // lets us cancel mid-stream if user clicks X
+
+  const parsedSections = useMemo(() => {
+    const sections = chapter.content.split('### ').filter(s => s.trim());
+    return sections.map((section, idx) => {
+      const lines = section.split('\n');
+      const title = lines[0].trim();
+      const body  = lines.slice(1).join('\n');
+      return { idx, title, body };
+    });
+  }, [chapter]);
+
+  const inlineCheckpoints = useMemo(() => {
+    if (Array.isArray(chapter.inlineQuizzes) && chapter.inlineQuizzes.length) {
+      return chapter.inlineQuizzes.map((q, i) => ({
+        id: q.id || `checkpoint-${i + 1}`,
+        afterSection: Math.min(
+          Math.max(0, parseInt(q.afterSection ?? Math.floor(parsedSections.length / 2), 10)),
+          Math.max(0, parsedSections.length - 1),
+        ),
+        title: q.title || `Checkpoint ${i + 1}`,
+        description: q.description || 'Complete this compulsory quiz checkpoint before continuing.',
+        passPercent: q.passPercent ?? 70,
+        questions: q.questions || [],
+      }));
+    }
+
+    if (chapter.quiz) {
+      return [{
+        id: 'checkpoint-mid',
+        afterSection: Math.max(0, Math.floor(parsedSections.length / 2) - 1),
+        title: 'Compulsory Mid-Chapter Checkpoint',
+        description: 'Answer this checkpoint to continue reading the chapter.',
+        passPercent: 70,
+        questions: [{
+          question: chapter.quiz.question,
+          options: chapter.quiz.options,
+          answer: chapter.quiz.answer,
+        }],
+      }];
+    }
+
+    return [];
+  }, [chapter, parsedSections.length]);
+
+  useEffect(() => {
+    setQuizProgress({});
+  }, [chapter.id, chapter.title]);
 
   // ── Text selection handler ──────────────────────────────────────────────────
   const handleMouseUp = () => {
@@ -158,123 +224,297 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
   const meta = ACTION_META[activeAction || aiResponse.type] || ACTION_META.Explanation;
   const Icon = meta.icon;
 
-  // ── Content renderer (unchanged from original) ────────────────────────────
-  const renderContent = () => {
-    const sections = chapter.content.split('### ');
-    return sections.map((section, idx) => {
-      if (!section.trim()) return null;
+  const onSelectQuizOption = (checkpointId, qIdx, option) => {
+    setQuizProgress(prev => ({
+      ...prev,
+      [checkpointId]: {
+        ...(prev[checkpointId] || {}),
+        answers: {
+          ...((prev[checkpointId] || {}).answers || {}),
+          [qIdx]: option,
+        },
+      },
+    }));
+  };
 
-      const lines = section.split('\n');
-      const title = lines[0].trim();
-      const body  = lines.slice(1).join('\n');
+  const submitCheckpoint = (checkpoint) => {
+    const current = quizProgress[checkpoint.id] || {};
+    const answers = current.answers || {};
+    const total = checkpoint.questions.length;
+    if (Object.keys(answers).length < total) return;
 
-      if (title === "Let's study.") {
-        return (
-          <div key={idx} className="textbook-box-study group">
-            <div className="absolute -top-4 left-6 bg-white px-4 py-1 text-[#e91e63] font-bold text-lg border-2 border-[#e91e63] rounded-full shadow-sm group-hover:shadow-md transition-shadow">
-              Let's study.
-            </div>
-            <div className="prose prose-lg max-w-none text-gray-800 pt-2">
-              <ul className="list-disc list-inside space-y-2">
-                {body.split('\n').map((p, i) => {
-                  const cleanP = p.trim().replace(/^•\s*/, '');
-                  return cleanP && <li key={i} className="text-[#e91e63] font-medium"><span className="text-gray-800">{cleanP}</span></li>;
+    const correct = checkpoint.questions.reduce((acc, q, idx) => (
+      answers[idx] === q.answer ? acc + 1 : acc
+    ), 0);
+    const scorePercent = Math.round((correct / total) * 100);
+    const passed = scorePercent >= checkpoint.passPercent;
+
+    setQuizProgress(prev => ({
+      ...prev,
+      [checkpoint.id]: {
+        ...current,
+        submitted: true,
+        scorePercent,
+        passed,
+        continueConfirmed: passed,
+      },
+    }));
+  };
+
+  const continueAfterLowScore = (checkpointId) => {
+    setQuizProgress(prev => ({
+      ...prev,
+      [checkpointId]: {
+        ...(prev[checkpointId] || {}),
+        continueConfirmed: true,
+      },
+    }));
+  };
+
+  const renderCheckpointCard = (checkpoint) => {
+    const state = quizProgress[checkpoint.id] || {};
+    const answers = state.answers || {};
+    const answeredCount = Object.keys(answers).length;
+    const allAnswered = answeredCount === checkpoint.questions.length;
+    const isCompleted = Boolean(state.submitted && state.continueConfirmed);
+    const isLowScore = Boolean(state.submitted && !state.passed);
+
+    return (
+      <div key={checkpoint.id} className="my-10 p-6 border-4 border-[#2196f3] bg-[#eef7ff] rounded-3xl shadow-[6px_6px_0px_0px_rgba(33,150,243,0.2)]">
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <h3 className="text-lg font-black uppercase tracking-widest text-[#1565c0]">{checkpoint.title}</h3>
+          <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 border-2 border-[#2196f3] bg-white text-[#1565c0]">
+            Compulsory
+          </span>
+        </div>
+
+        <p className="text-sm font-semibold text-gray-700 mb-4">{checkpoint.description}</p>
+
+        <div className="space-y-5">
+          {checkpoint.questions.map((q, qIdx) => (
+            <div key={qIdx} className="p-4 border-2 border-[#90caf9] bg-white rounded-xl">
+              <p className="font-bold text-gray-800 mb-3">Q{qIdx + 1}. {q.question}</p>
+              <div className="space-y-2">
+                {q.options.map(opt => {
+                  const selected = answers[qIdx] === opt;
+                  return (
+                    <button
+                      key={opt}
+                      onClick={() => onSelectQuizOption(checkpoint.id, qIdx, opt)}
+                      disabled={state.submitted}
+                      className={`w-full text-left p-3 border-2 font-bold text-sm transition-all ${selected ? 'border-[#1565c0] bg-[#e3f2fd]' : 'border-gray-200 bg-white hover:border-[#64b5f6]'}`}
+                    >
+                      {renderInlineBold(opt)}
+                    </button>
+                  );
                 })}
-              </ul>
+              </div>
             </div>
-          </div>
-        );
-      }
+          ))}
+        </div>
 
-      if (title === "Let's recall.") {
-        return (
-          <div key={idx} className="textbook-box-recall group">
-            <div className="absolute -top-4 left-6 bg-white px-4 py-1 text-[#2196f3] font-bold text-lg border-2 border-[#2196f3] rounded-full shadow-sm group-hover:shadow-md transition-shadow">
-              Let's recall.
+        {!state.submitted ? (
+          <button
+            onClick={() => submitCheckpoint(checkpoint)}
+            disabled={!allAnswered}
+            className="mt-5 px-5 py-2.5 bg-[#1565c0] text-white font-black border-2 border-black disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Submit Checkpoint ({answeredCount}/{checkpoint.questions.length})
+          </button>
+        ) : (
+          <div className="mt-5 p-4 border-2 border-black bg-white">
+            <div className="font-black text-sm uppercase tracking-wider text-gray-700">
+              Score: {state.scorePercent}%
             </div>
-            <div className="prose prose-lg max-w-none text-gray-800 pt-2">
-              {body.split('\n').map((p, i) => p.trim() && <p key={i} className="mb-2 leading-relaxed">{p}</p>)}
-            </div>
-          </div>
-        );
-      }
 
+            {isLowScore ? (
+              <div className="mt-2 space-y-3">
+                <p className="text-sm font-semibold text-red-600">
+                  Low score. Recommended: relearn this part before moving ahead.
+                </p>
+                {state.continueConfirmed ? (
+                  <p className="text-sm font-semibold text-[#1565c0]">Continue enabled. You may proceed.</p>
+                ) : (
+                  <button
+                    onClick={() => continueAfterLowScore(checkpoint.id)}
+                    className="px-4 py-2 border-2 border-black bg-yellow-300 font-black text-sm"
+                  >
+                    Continue Anyway
+                  </button>
+                )}
+              </div>
+            ) : (
+              <p className="mt-2 text-sm font-semibold text-green-700">Great job. Continue to the next part.</p>
+            )}
+          </div>
+        )}
+
+        {isCompleted && (
+          <div className="mt-3 text-xs font-black uppercase tracking-widest text-[#1565c0]">Checkpoint completed</div>
+        )}
+      </div>
+    );
+  };
+
+  const isCheckpointComplete = (checkpointId) => {
+    const state = quizProgress[checkpointId] || {};
+    return Boolean(state.submitted && state.continueConfirmed);
+  };
+
+  const isLetsStudy = (title) => cleanForCompare(title) === 'lets study';
+  const isLetsRecall = (title) => cleanForCompare(title) === 'lets recall';
+
+  const renderRegularSection = (section, idx) => {
+    const { title, body } = section;
+
+    if (isLetsStudy(title)) {
       return (
-        <div key={idx} className="mb-12">
-          {idx > 0 && (
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-[#e91e63]/20" />
-              <h2 className="text-2xl font-black text-[#e91e63] uppercase tracking-tight">{title}</h2>
-              <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-[#e91e63]/20" />
-            </div>
-          )}
-          <div className="prose prose-lg max-w-none text-gray-800">
-            {body.split('\n\n').map((p, i) => {
-              if (p.startsWith('**Ex.')) {
-                return (
-                  <div key={i} className="textbook-example-box p-6 bg-[#fff5f8] rounded-xl border-l-8 border-[#e91e63] mb-8 shadow-sm">
-                    {p.split('\n').map((line, li) => (
-                      <p key={li} className={li === 0 ? 'font-black text-[#e91e63] text-xl mb-3' : 'text-gray-700 leading-relaxed'}>
-                        {line.replace(/^\*\*Ex\.\s*/, 'Example: ')}
-                      </p>
-                    ))}
-                  </div>
-                );
-              }
-              if (p.startsWith('**Solution :**')) {
-                return (
-                  <div key={i} className="mt-4 mb-8 p-6 bg-white border-2 border-dashed border-gray-200 rounded-xl">
-                    <div className="text-[#e91e63] font-bold uppercase text-sm tracking-widest mb-3 flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-[#e91e63]" /> Solution
-                    </div>
-                    <div className="space-y-3">
-                      {p.replace('**Solution :**', '').split('\n').map((line, li) => (
-                        <p key={li} className="text-gray-600 italic leading-relaxed">{line.trim()}</p>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-              if (p.startsWith('**Activity')) {
-                return (
-                  <div key={i} className="my-12 p-8 bg-[#fffde7] border-4 border-[#fbc02d] rounded-3xl shadow-lg relative group">
-                    <div className="absolute -top-6 left-10 bg-[#fbc02d] text-white px-6 py-2 rounded-full font-black text-xl shadow-md flex items-center gap-3">
-                      <span className="text-2xl">✏️</span> Activity
-                    </div>
-                    <div className="prose prose-lg max-w-none text-gray-800 pt-4">
-                      {p.split('\n').slice(1).map((line, li) => (
-                        <div key={li} className="flex gap-4 mb-4 items-start">
-                          <div className="w-6 h-6 rounded-md border-2 border-[#fbc02d] flex-shrink-0 mt-1" />
-                          <p className="leading-relaxed">{line}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-              if (p.startsWith('**Practice Set')) {
-                return (
-                  <div key={i} className="my-12 p-8 bg-gray-900 text-white rounded-2xl shadow-xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
-                    <h3 className="text-3xl font-black mb-4 flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[#e91e63] rounded-sm" />
-                      {p.split('\n')[0].replace(/\*\*/g, '')}
-                    </h3>
-                    <div className="h-1 w-24 bg-[#e91e63] mb-6" />
-                    <div className="space-y-4">
-                      {p.split('\n').slice(1).map((line, li) => (
-                        <p key={li} className="text-gray-300 font-medium">{line}</p>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-              return <p key={i} className="mb-6 whitespace-pre-wrap leading-relaxed text-lg">{p}</p>;
-            })}
+        <div key={`section-${idx}`} className="textbook-box-study group">
+          <div className="absolute -top-4 left-6 bg-white px-4 py-1 text-[#e91e63] font-bold text-lg border-2 border-[#e91e63] rounded-full shadow-sm group-hover:shadow-md transition-shadow">
+            Let&apos;s study.
+          </div>
+          <div className="prose prose-lg max-w-none text-gray-800 pt-2">
+            <ul className="list-disc list-inside space-y-2">
+              {body.split('\n').map((p, i) => {
+                const cleanP = p.trim().replace(/^•\s*/, '');
+                return cleanP && <li key={i} className="text-[#e91e63] font-medium"><span className="text-gray-800">{renderInlineBold(cleanP)}</span></li>;
+              })}
+            </ul>
           </div>
         </div>
       );
+    }
+
+    if (isLetsRecall(title)) {
+      return (
+        <div key={`section-${idx}`} className="textbook-box-recall group">
+          <div className="absolute -top-4 left-6 bg-white px-4 py-1 text-[#2196f3] font-bold text-lg border-2 border-[#2196f3] rounded-full shadow-sm group-hover:shadow-md transition-shadow">
+            Let&apos;s recall.
+          </div>
+          <div className="prose prose-lg max-w-none text-gray-800 pt-2">
+            {body.split('\n').map((p, i) => p.trim() && <p key={i} className="mb-2 leading-relaxed">{renderInlineBold(p)}</p>)}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div key={`section-${idx}`} className="mb-12">
+        {idx > 0 && (
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-0.5 flex-1 bg-linear-to-r from-transparent to-[#e91e63]/20" />
+            <h2 className="text-2xl font-black text-[#e91e63] uppercase tracking-tight">{renderInlineBold(title)}</h2>
+            <div className="h-0.5 flex-1 bg-linear-to-l from-transparent to-[#e91e63]/20" />
+          </div>
+        )}
+        <div className="prose prose-lg max-w-none text-gray-800">
+          {body.split('\n\n').map((p, i) => {
+            if (p.startsWith('**Ex.')) {
+              return (
+                <div key={i} className="textbook-example-box p-6 bg-[#fff5f8] rounded-xl border-l-8 border-[#e91e63] mb-8 shadow-sm">
+                  {p.split('\n').map((line, li) => (
+                    <p key={li} className={li === 0 ? 'font-black text-[#e91e63] text-xl mb-3' : 'text-gray-700 leading-relaxed'}>
+                      {li === 0 ? renderInlineBold(line.replace(/^\*\*Ex\.\s*/, 'Example: ')) : renderInlineBold(line)}
+                    </p>
+                  ))}
+                </div>
+              );
+            }
+            if (p.startsWith('**Solution :**')) {
+              return (
+                <div key={i} className="mt-4 mb-8 p-6 bg-white border-2 border-dashed border-gray-200 rounded-xl">
+                  <div className="text-[#e91e63] font-bold uppercase text-sm tracking-widest mb-3 flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#e91e63]" /> Solution
+                  </div>
+                  <div className="space-y-3">
+                    {p.replace('**Solution :**', '').split('\n').map((line, li) => (
+                      <p key={li} className="text-gray-600 italic leading-relaxed">{renderInlineBold(line.trim())}</p>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            if (p.startsWith('**Activity')) {
+              return (
+                <div key={i} className="my-12 p-8 bg-[#fffde7] border-4 border-[#fbc02d] rounded-3xl shadow-lg relative group">
+                  <div className="absolute -top-6 left-10 bg-[#fbc02d] text-white px-6 py-2 rounded-full font-black text-xl shadow-md flex items-center gap-3">
+                    <span className="text-2xl">✏️</span> Activity
+                  </div>
+                  <div className="prose prose-lg max-w-none text-gray-800 pt-4">
+                    {p.split('\n').slice(1).map((line, li) => (
+                      <div key={li} className="flex gap-4 mb-4 items-start">
+                        <div className="w-6 h-6 rounded-md border-2 border-[#fbc02d] shrink-0 mt-1" />
+                        <p className="leading-relaxed">{renderInlineBold(line)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            if (p.startsWith('**Practice Set')) {
+              return (
+                <div key={i} className="my-12 p-8 bg-gray-900 text-white rounded-2xl shadow-xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
+                  <h3 className="text-3xl font-black mb-4 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-[#e91e63] rounded-sm" />
+                    {renderInlineBold(p.split('\n')[0].replace(/\*\*/g, ''))}
+                  </h3>
+                  <div className="h-1 w-24 bg-[#e91e63] mb-6" />
+                  <div className="space-y-4">
+                    {p.split('\n').slice(1).map((line, li) => (
+                      <p key={li} className="text-gray-300 font-medium">{renderInlineBold(line)}</p>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            return <p key={i} className="mb-6 whitespace-pre-wrap leading-relaxed text-lg">{renderInlineBold(p)}</p>;
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  const renderContent = () => {
+    const quizzesBySection = inlineCheckpoints.reduce((acc, q) => {
+      if (!acc[q.afterSection]) acc[q.afterSection] = [];
+      acc[q.afterSection].push(q);
+      return acc;
+    }, {});
+
+    let lockedBy = null;
+    const blocks = [];
+
+    parsedSections.forEach((section, idx) => {
+      const sectionNode = renderRegularSection(section, idx);
+
+      if (!lockedBy) {
+        blocks.push(sectionNode);
+      } else {
+        blocks.push(
+          <div key={`locked-${idx}`} className="relative mb-12 opacity-45 pointer-events-none select-none">
+            {sectionNode}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-white border-2 border-black px-4 py-2 text-xs font-black uppercase tracking-wider text-[#1565c0]">
+                Complete checkpoint above to continue
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const sectionCheckpoints = quizzesBySection[idx] || [];
+      sectionCheckpoints.forEach(cp => {
+        blocks.push(renderCheckpointCard(cp));
+        if (!isCheckpointComplete(cp.id)) {
+          lockedBy = cp.id;
+        } else if (lockedBy === cp.id) {
+          lockedBy = null;
+        }
+      });
     });
+
+    return blocks;
   };
 
   return (
@@ -336,7 +576,7 @@ export const TextbookReader = ({ subject, chapter, profile, onBack }) => {
             <button onClick={() => askAI('Example')} className="px-4 py-2 hover:bg-gray-800 rounded-full text-sm font-bold flex items-center gap-2 transition-colors">
               <Zap size={16} /> Real-world Example
             </button>
-            <div className="w-[1px] bg-gray-700 mx-1" />
+            <div className="w-px bg-gray-700 mx-1" />
             <button onClick={() => setShowAIAction(false)} className="p-2 hover:bg-gray-800 rounded-full transition-colors">
               <X size={16} />
             </button>

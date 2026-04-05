@@ -82,6 +82,150 @@ const StepBar = ({ current }) => (
   </div>
 );
 
+// ── Styled note renderer ─────────────────────────────────────────────────────
+function cleanInline(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/^[-*\u2022]\s+/, '')
+    .trim();
+}
+
+function parseNoteSections(content = '') {
+  const lines = content.replace(/\r\n/g, '\n').split('\n');
+  const sections = [];
+  let current = { title: 'Study Notes', entries: [] };
+
+  const pushCurrent = () => {
+    if (!current.entries.length) return;
+    sections.push(current);
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    const markdownHeadingMatch = line.match(/^#{1,6}\s+(.+)$/);
+    const colonHeadingMatch = line.match(/^([A-Za-z][A-Za-z\s/&()'-]{1,50}):\s*(.*)$/);
+    const bulletMatch = line.match(/^[-*\u2022]\s+(.+)$/);
+    const numberMatch = line.match(/^(\d+)[.)]\s+(.+)$/);
+
+    if (markdownHeadingMatch) {
+      pushCurrent();
+      current = { title: cleanInline(markdownHeadingMatch[1]), entries: [] };
+      continue;
+    }
+
+    if (colonHeadingMatch && colonHeadingMatch[1].length <= 40) {
+      pushCurrent();
+      current = { title: cleanInline(colonHeadingMatch[1]), entries: [] };
+      if (colonHeadingMatch[2]) {
+        current.entries.push({ type: 'paragraph', text: cleanInline(colonHeadingMatch[2]) });
+      }
+      continue;
+    }
+
+    if (bulletMatch) {
+      current.entries.push({ type: 'bullet', text: cleanInline(bulletMatch[1]) });
+      continue;
+    }
+
+    if (numberMatch) {
+      current.entries.push({ type: 'number', number: numberMatch[1], text: cleanInline(numberMatch[2]) });
+      continue;
+    }
+
+    current.entries.push({ type: 'paragraph', text: cleanInline(line) });
+  }
+
+  pushCurrent();
+
+  if (!sections.length) {
+    return [{
+      title: 'Study Notes',
+      entries: [{ type: 'paragraph', text: content.trim() }],
+    }];
+  }
+
+  return sections;
+}
+
+function getSectionTheme(title, idx) {
+  const t = (title || '').toLowerCase();
+  if (/key concept|overview|summary|topic/.test(t)) {
+    return { bg: 'bg-blue-50', border: 'border-blue-300', chip: 'bg-blue-500' };
+  }
+  if (/definition|formula|term/.test(t)) {
+    return { bg: 'bg-purple-50', border: 'border-purple-300', chip: 'bg-purple-500' };
+  }
+  if (/important|point|note/.test(t)) {
+    return { bg: 'bg-amber-50', border: 'border-amber-300', chip: 'bg-amber-500' };
+  }
+  if (/example|application/.test(t)) {
+    return { bg: 'bg-green-50', border: 'border-green-300', chip: 'bg-green-500' };
+  }
+  if (/activity|exercise|practice|question/.test(t)) {
+    return { bg: 'bg-yellow-50', border: 'border-yellow-400', chip: 'bg-yellow-500' };
+  }
+
+  const fallback = [
+    { bg: 'bg-gray-50', border: 'border-gray-300', chip: 'bg-gray-600' },
+    { bg: 'bg-cyan-50', border: 'border-cyan-300', chip: 'bg-cyan-500' },
+    { bg: 'bg-rose-50', border: 'border-rose-300', chip: 'bg-rose-500' },
+  ];
+  return fallback[idx % fallback.length];
+}
+
+function StyledNoteContent({ content }) {
+  const sections = parseNoteSections(content);
+
+  return (
+    <div className="space-y-4">
+      {sections.map((section, idx) => {
+        const theme = getSectionTheme(section.title, idx);
+        return (
+          <section
+            key={`${section.title}-${idx}`}
+            className={`border-2 border-black ${theme.bg} shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden`}
+          >
+            <div className="px-4 py-2 border-b-2 border-black bg-white flex items-center gap-2">
+              <span className={`w-2.5 h-2.5 rounded-full ${theme.chip} border border-black`} />
+              <h4 className="text-xs font-bold uppercase tracking-widest text-gray-700">{section.title}</h4>
+            </div>
+
+            <div className={`p-4 border-l-4 ${theme.border} space-y-2`}>
+              {section.entries.map((entry, entryIdx) => {
+                if (entry.type === 'bullet') {
+                  return (
+                    <div key={entryIdx} className="flex items-start gap-2.5 text-sm text-gray-800 leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0" />
+                      <span>{entry.text}</span>
+                    </div>
+                  );
+                }
+
+                if (entry.type === 'number') {
+                  return (
+                    <div key={entryIdx} className="flex items-start gap-2.5 text-sm text-gray-800 leading-relaxed">
+                      <span className="text-xs font-bold border border-black bg-white px-1.5 py-0.5 mt-0.5 shrink-0">{entry.number}</span>
+                      <span>{entry.text}</span>
+                    </div>
+                  );
+                }
+
+                return (
+                  <p key={entryIdx} className="text-sm text-gray-800 leading-relaxed">
+                    {entry.text}
+                  </p>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
 // ── Main Component ────────────────────────────────────────────────────────────
 export const MyNotes = () => {
   const [notes,    setNotes]    = useState([]);
@@ -504,10 +648,8 @@ export const MyNotes = () => {
                 </button>
               </div>
 
-              <div className="mt-6 prose max-w-none">
-                <div className="whitespace-pre-wrap text-gray-700 text-sm leading-relaxed font-mono bg-gray-50 p-4 border-2 border-gray-200">
-                  {selectedNote.content}
-                </div>
+              <div className="mt-6">
+                <StyledNoteContent content={selectedNote.content} />
               </div>
 
               <div className="flex gap-4 pt-6">

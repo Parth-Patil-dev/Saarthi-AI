@@ -53,7 +53,12 @@ export async function generateNotes({ subject, chapter, style }) {
     `Subject: ${subject}\n` +
     `Chapter: ${chapter}\n` +
     `Style: ${styleGuide}\n\n` +
-    `Include: key concepts, definitions, important points, and examples where helpful.`;
+    `Include: key concepts, definitions, important points, and examples where helpful.\n\n` +
+    `Formatting rules:\n` +
+    `- Use clear section labels like: KEY CONCEPTS:, DEFINITIONS:, IMPORTANT POINTS:, EXAMPLES:, ACTIVITY:\n` +
+    `- Prefer short bullets under each section\n` +
+    `- Do not include refusal text, meta commentary, or unrelated prompts\n` +
+    `- Keep language student-friendly and directly relevant to the requested subject/chapter.`;
 
   logger.info(`[Notes] Generating notes: ${subject} / ${chapter} (${style})`);
   const content = await callModel(system, [{ role: 'user', content: prompt }]);
@@ -85,7 +90,8 @@ export async function summarisePdfToNotes() {
     `Summarise the following document into well-organised study notes.\n` +
     `Document: "${pdf.filename}"\n\n` +
     `--- CONTENT ---\n${snippet}\n--- END ---\n\n` +
-    `Format: use headings, bullet points, and highlight key terms. Be thorough but concise.`;
+    `Format: use section labels, bullet points, and highlight key terms. Be thorough but concise.\n` +
+    `Sections to include where possible: OVERVIEW:, KEY CONCEPTS:, IMPORTANT POINTS:, EXAMPLES:, QUICK REVISION:.`;
 
   logger.info(`[Notes] Summarising PDF: ${pdf.filename}`);
   const content = await callModel(system, [{ role: 'user', content: prompt }]);
